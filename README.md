@@ -1,8 +1,8 @@
 # MinePost
 
 ### 협업 방식: Forking
-- 참고 링크: <https://gmlwjd9405.github.io/2017/10/28/how-to-collaborate-on-GitHub-2.html>
-- 선택 이유: 오픈소스 프로젝트에 많이 사용하는 방식 -> 익숙해지기 위해서
+- 링크: <https://gmlwjd9405.github.io/2017/10/28/how-to-collaborate-on-GitHub-2.html>
+- 이유: 오픈소스 프로젝트에 많이 사용하는 방식 -> 익숙해지기 위해서
 
 ### 웹 디자인
 - 작업자: 석진, 재희
