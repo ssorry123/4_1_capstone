@@ -1,15 +1,4 @@
 i=0
-def init():
-    import torch
-    from gluonnlp.data import SentencepieceTokenizer
-    import sys
-    import os
-    sys.path.append('/workspace/KoGPT2/')
-    from kogpt2.utils import get_tokenizer
-    from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
-    from model.torch_gpt2 import GPT2Config, GPT2LMHeadModel
-    i=1
-    return
 
 
 def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
