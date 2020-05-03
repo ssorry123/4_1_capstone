@@ -3,4 +3,5 @@ from . import views #.은 현재폴더의 디렉토리라는뜻. 즉 현재폴�
 
 urlpatterns = [
     path('', views.index),
+    path('/hello', views.index1),
 ]

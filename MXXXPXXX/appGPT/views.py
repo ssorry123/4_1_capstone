@@ -12,3 +12,6 @@ def index(request):
     
     
     return HttpResponse(ret)
+
+def index1(request):
+    return HttpResponse("안녕")
