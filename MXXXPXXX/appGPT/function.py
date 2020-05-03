@@ -89,7 +89,6 @@ def get_one_sentence(sent='2019년한해'):
     print(sent)
     return sent
     
-#get_one_sentence()
     
     
     
