@@ -1,4 +1,4 @@
-global model, vocab
+i = 0
 
 
 def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
@@ -51,18 +51,18 @@ def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
     return kogpt2model, vocab_b_obj
 
 
-def get_one_sentence_init(sent='2019년한해'):
+def get_one_sentence(sent='2019년한해'):
     import torch
     from gluonnlp.data import SentencepieceTokenizer
     import sys
     import os
     sys.path.append('/workspace/KoGPT2/')
     from kogpt2.utils import get_tokenizer
-    '''
+
     tok_path = get_tokenizer()
-    
+
     tok = SentencepieceTokenizer(tok_path)
-    '''
+
     cache_dir = '/workspace/KoGPT2/kogpt2/'
     model, vocab = get_model_vocab(cache_dir, 'cpu')
     ''' 학습모델 적용 부분
@@ -72,21 +72,6 @@ def get_one_sentence_init(sent='2019년한해'):
     '''
 
     #sent=''
-
-    ret = get_one_sentence(model, vocab, sent)
-
-    return ret
-
-
-def get_one_sentence(model, vocab, sent):
-    import torch
-    from gluonnlp.data import SentencepieceTokenizer
-    import sys
-    sys.path.append('/workspace/KoGPT2/')
-    from kogpt2.utils import get_tokenizer
-
-    tok_path = get_tokenizer()
-    tok = SentencepieceTokenizer(tok_path)
     toked = tok(sent)
     while 1:
         input_ids = torch.tensor([
@@ -101,5 +86,4 @@ def get_one_sentence(model, vocab, sent):
         sent += gen.replace('▁', ' ')
         toked = tok(sent)
     print(sent)
-
-    return ret
+    return sent
