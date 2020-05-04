@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from .forms import KeywordForm
 from .models import Keyword
-from .KoGPT2 import test
+from .my_function import *
 
 
 def indexView(request):
@@ -14,7 +14,7 @@ def indexView(request):
         form = KeywordForm(request.POST)
         if form.is_valid():
             keyword_text = request.POST.get('keyword_text', '')
-            ret = test.generate_3rd(keyword_text)
+            ret = generate_3rd(keyword_text)
             keyword_obj = Keyword(keyword_text=ret)
             # keyword_obj.save()
             ctx = {
