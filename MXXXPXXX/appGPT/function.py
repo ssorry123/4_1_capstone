@@ -92,7 +92,7 @@ def get_one_sentence(model, vocab, sent):
     
     tok_path = get_tokenizer()    
     tok = SentencepieceTokenizer(tok_path)
-        toked = tok(sent)
+    toked = tok(sent)
     while 1:
         input_ids = torch.tensor([vocab[vocab.bos_token],]  + vocab[toked]).unsqueeze(0)
         pred = model(input_ids)[0]
