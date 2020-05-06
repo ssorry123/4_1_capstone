@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from . import function
 # Create your views here.
 
+#깃풀실험
+
 def index(request):
     ret = 'HELOO GGHH\n'
     sent = '칼을 세워'
