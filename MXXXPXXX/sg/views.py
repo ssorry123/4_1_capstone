@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -14,13 +14,16 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_article_list'
 
     def get_queryset(self):
-        """
-        Return the last five published questions (not
-        including those set to be
-        published in the future).
-        """
         return Article.objects.filter(
             pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+
+
+class DetailView(generic.DetailView):
+    model = Article
+    template_name = 'sg/detail.html'
+
+    def get_queryset(self):
+        return Article.objects.filter(pub_date__lte=timezone.now())
 
 
 def post(request):
@@ -37,12 +40,12 @@ def results(request):
         if form.is_valid():
             keyword = request.POST.get('keyword', '')
             ret = generate_3rd(keyword)
-            keyword_obj = Article(text=ret)
-            # keyword_obj.save()
+            form.text = ret
             ctx = {
+                'form': form,
                 'ret': ret,
             }
-            return render(request, 'sg/results.html', ctx)
+            return render(request, 'sg/post.html', ctx)
     else:
         form = ArticleForm()
 
@@ -55,6 +58,13 @@ def results(request):
 
 def save(request):
     if request.method == "POST":
-        return render(request, 'sg/index.html')
-    else:
-        return render(request, 'sg/index.html')
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = Article()
+            article.text = request.POST.get('ret', '')
+            article.keyword = form.cleaned_data['keyword']
+            article.title = form.cleaned_data['title']
+            article.save()
+            return redirect('sg:index')
+
+    return redirect('sg:index')

@@ -8,4 +8,5 @@ urlpatterns = [
     path('post/', views.post, name='post'),
     path('post/results/', views.results, name='results'),
     path('post/results/save/', views.save, name='save'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
 ]
