@@ -4,33 +4,57 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .forms import KeywordForm
-from .models import Keyword
+from .forms import ArticleForm
+from .models import Article
 from .my_function import *
 
 
-def indexView(request):
+class IndexView(generic.ListView):
+    template_name = 'sg/index.html'
+    context_object_name = 'latest_article_list'
+
+    def get_queryset(self):
+        """
+        Return the last five published questions (not
+        including those set to be
+        published in the future).
+        """
+        return Article.objects.filter(
+            pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+
+
+def post(request):
+    form = ArticleForm()
+    ctx = {
+        'form': form,
+    }
+    return render(request, 'sg/post.html', ctx)
+
+
+def results(request):
     if request.method == "POST":
-        form = KeywordForm(request.POST)
+        form = ArticleForm(request.POST)
         if form.is_valid():
-            keyword_text = request.POST.get('keyword_text', '')
-            ret = generate_3rd(keyword_text)
-            keyword_obj = Keyword(keyword_text=ret)
+            keyword = request.POST.get('keyword', '')
+            ret = generate_3rd(keyword)
+            keyword_obj = Article(text=ret)
             # keyword_obj.save()
             ctx = {
-                'keyword': ret,
+                'ret': ret,
             }
-            return render(request, 'practice/results.html', ctx)
+            return render(request, 'sg/results.html', ctx)
     else:
-        form = KeywordForm()
+        form = ArticleForm()
 
     ctx = {
         'form': form,
     }
 
-    return render(request, 'practice/index.html', ctx)
+    return render(request, 'sg/post.html', ctx)
 
 
-class ResultsView(generic.DetailView):
-    model = Keyword
-    template_name = '/results.html'
+def save(request):
+    if request.method == "POST":
+        return render(request, 'sg/index.html')
+    else:
+        return render(request, 'sg/index.html')

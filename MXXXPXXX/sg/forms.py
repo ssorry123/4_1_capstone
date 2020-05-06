@@ -1,5 +1,8 @@
 from django import forms
+from .models import Article
 
 
-class KeywordForm(forms.Form):
-    keyword_text = forms.CharField()
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['keyword']

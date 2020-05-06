@@ -1,0 +1,7 @@
+<form action="{% url 'sg:results' %}" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_p }}
+    </table>
+    <input type="submit" value="문장 생성">
+</form>
