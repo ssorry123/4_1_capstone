@@ -51,7 +51,7 @@ def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
     return kogpt2model, vocab_b_obj
     
     
-def get_one_sentence_init(sent='2019년한해'):
+def get_one_sentence(sent='2019년한해'):
     import torch
     from gluonnlp.data import SentencepieceTokenizer
     import sys
@@ -64,19 +64,19 @@ def get_one_sentence_init(sent='2019년한해'):
     tok_path = get_tokenizer()
 
     tok = SentencepieceTokenizer(tok_path)
-    ''' 학습모델 적용 부분
+    학습모델 적용 부분
     load_path = '/content/drive/MyDrive/NarrativeKoGPT2/checkpoint/narrativeKoGPT2_checkpoint_112.tar'
     checkpoint = torch.load(load_path, map_location=device) #튜닝한거 불러오고
     model.load_state_dict(checkpoint['model_state_dict'])  #모델에 적용  
     '''
 
     #sent=''
-    
-    ret = get_one_sentence(model, vocab, sent)
+    model, vocab = get_model_vocab()
+    ret = get_one_sentence_sub(model, vocab, sent)
 
     return ret
     
-def get_one_sentence(model, vocab, sent):
+def get_one_sentence_sub(model, vocab, sent):
     import torch
     from gluonnlp.data import SentencepieceTokenizer
     import sys
@@ -100,7 +100,7 @@ def get_one_sentence(model, vocab, sent):
         sent += gen.replace('▁', ' ')
         toked = tok(sent)
     print(sent)
-    return ret
+    return sent
     
     
     
