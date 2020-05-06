@@ -1,5 +1,8 @@
 # MinePost
 
+깃 풀 실험
+
+
 ### 협업 방식: Forking
 - 링크1: <https://gmlwjd9405.github.io/2017/10/28/how-to-collaborate-on-GitHub-2.html>
 - 링크2: <https://andamiro25.tistory.com/193>
