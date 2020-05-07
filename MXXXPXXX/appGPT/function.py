@@ -1,16 +1,22 @@
 i = 0
+# 성구형 문장생성있어서 서버 시작 준비시간 단축하기위해 주석처리 2020_05_07_12:16
+'''
+print("123")
+import torch
+from gluonnlp.data import SentencepieceTokenizer
+import sys
+import os
+sys.path.append('/workspace/KoGPT2/')
+from kogpt2.utils import get_tokenizer
+from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+from model.torch_gpt2 import GPT2Config, GPT2LMHeadModel
+import gluonnlp as nlp
+
+
 
 
 def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
-    import torch
-    from gluonnlp.data import SentencepieceTokenizer
-    import sys
-    import os
-    sys.path.append('/workspace/KoGPT2/')
-    from kogpt2.utils import get_tokenizer
-    from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
-    from model.torch_gpt2 import GPT2Config, GPT2LMHeadModel
-    import gluonnlp as nlp
+
     ctx = 'cpu'
 
     f_cachedir = os.path.expanduser(cache_dir)
@@ -49,43 +55,21 @@ def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
                                                          eos_token='</s>')
 
     return kogpt2model, vocab_b_obj
-    
+ 
+tok_path = get_tokenizer()    
+tok = SentencepieceTokenizer(tok_path)
+print("456")
+model, vocab = get_model_vocab()
+print("서버 준비 완료 sw")
     
 def get_one_sentence(sent='2019년한해'):
-    import torch
-    from gluonnlp.data import SentencepieceTokenizer
-    import sys
-    import os
-    sys.path.append('/workspace/KoGPT2/')
-    from kogpt2.utils import get_tokenizer
 
-
-    '''
-    tok_path = get_tokenizer()
-
-    tok = SentencepieceTokenizer(tok_path)
-    학습모델 적용 부분
-    load_path = '/content/drive/MyDrive/NarrativeKoGPT2/checkpoint/narrativeKoGPT2_checkpoint_112.tar'
-    checkpoint = torch.load(load_path, map_location=device) #튜닝한거 불러오고
-    model.load_state_dict(checkpoint['model_state_dict'])  #모델에 적용  
-    '''
-
-    #sent=''
-    model, vocab = get_model_vocab()
     ret = get_one_sentence_sub(model, vocab, sent)
 
     return ret
     
 def get_one_sentence_sub(model, vocab, sent):
-    import torch
-    from gluonnlp.data import SentencepieceTokenizer
-    import sys
-    sys.path.append('/workspace/KoGPT2/')
-    from kogpt2.utils import get_tokenizer
     
-    
-    tok_path = get_tokenizer()    
-    tok = SentencepieceTokenizer(tok_path)
     toked = tok(sent)
     while 1:
         input_ids = torch.tensor([
@@ -101,6 +85,6 @@ def get_one_sentence_sub(model, vocab, sent):
         toked = tok(sent)
     print(sent)
     return sent
-    
+'''
     
     
