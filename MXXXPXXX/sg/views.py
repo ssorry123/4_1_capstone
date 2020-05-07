@@ -39,7 +39,10 @@ def results(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             keyword = request.POST.get('keyword', '')
-            ret = generate_3rd(keyword)
+            
+            #ret = generate_3rd(keyword)
+            ret = generate_text(keyword)
+            
             form.text = ret
             ctx = {
                 'form': form,
