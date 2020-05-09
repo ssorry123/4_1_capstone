@@ -1,3 +1,4 @@
+<!-- 
 {% if latest_article_list %}
 <ul>
     {% for article in latest_article_list %}
@@ -10,3 +11,58 @@
 <form>
     <input type='button' value='글쓰기' onclick='location.href="{% url 'sg:post' %}"'>
 </form>
+-->
+
+<!-- 메인페이지 . 0510 석진 제작 . div 단위로 쪼개기!-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">        
+    </head>
+<body>
+    <div class="wrap">
+        
+        <div class="header">
+            <div class="header_top">
+            	<div class="header_top_area">
+                 	<div class="header_top_inner">                    	
+                    	<a href="/" class="logo">
+                        	<img src="../minepost2/MXXXPXXX/mine_logo.png" alt="MINE-POST">
+                    	</a>
+                    	<ul class="header_top_items">
+                        	<li>검색</li>
+                          	<li>로그인</li>
+                          	<li>회원가입</li>
+                    	</ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header_mid">
+                <ul class="header_mid_items">
+                    <li>정치</li>
+                    <li>사회</li>
+                    <li>과학</li>
+                  	<li>문화</li>
+                </ul>
+            </div>
+            <div class="header_bot">
+            
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="main_content">
+            
+            </div>
+            <div class="main_aside">
+            
+            </div>
+        </div>
+        
+        <div class="footer">
+
+        </div>
+        
+    </div>
+</body>
+</html>
