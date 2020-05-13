@@ -56,12 +56,12 @@ def get_model_vocab(cache_dir='/workspace/KoGPT2/kogpt2/', ctx='cpu'):
 
     return kogpt2model, vocab_b_obj
 
+
 print("KoGPT2 불러오는중... 2/4")
 tok_path = get_tokenizer()
 tok = SentencepieceTokenizer(tok_path)
 model, vocab = get_model_vocab()
 # ~문장 생성 속도 최적화(2020_05_07_12:00)
-
 
 
 print("학습된 파일 모델에 적용중... 3/4")
@@ -74,7 +74,6 @@ checkpoint = torch.load(load_path, map_location=device) #튜닝한거 불러오�
 model.load_state_dict(checkpoint['model_state_dict'])  #모델에 적용
 '''
 # ~학습된 모델 적용 (2020_05_07_15:02)
-
 
 print("서버 준비중... 4/4 한번 더하게됨")
 
@@ -94,7 +93,7 @@ def generate_text(text):
         pred = model(input_ids)[0]
         gen = vocab.to_tokens(torch.argmax(pred,
                                            axis=-1).squeeze().tolist())[-1]
-        if gen == '</s>' or gen=='.':
+        if gen == '</s>' or gen == '.':
             break
         sent += gen.replace('▁', ' ')
         toked = tok(sent)
