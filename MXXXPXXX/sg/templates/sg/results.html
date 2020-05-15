@@ -1,8 +1,0 @@
-<p>{{ ret }}</p>
-<form action="{% url 'sg:save' %}" method='post'>
-    {% csrf_token %}
-    <button name='save' value='저장'></button>
-</form>
-<a href="{% url 'sg:post' %}">다시 하기</a>
-<br>
-<a href="{% url 'sg:index' %}">메인 화면</a>
