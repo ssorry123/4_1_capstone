@@ -16,7 +16,7 @@ import re
 '''
     2. KoGPT2 package
 '''
-# local마다 import 방법이 상의할 수 있음(이름 지정) 각자 컴퓨터에 맞게
+# local마다 import 방법이 상이할 수 있음(이름 지정) 각자 컴퓨터에 맞게
 # 나중에 기회되면 통일하기로
 sys.path.append('/workspace/KoGPT2/')
 from kogpt2.utils import get_tokenizer
