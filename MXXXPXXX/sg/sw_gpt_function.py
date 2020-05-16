@@ -106,7 +106,7 @@ def context_words_list(pred, toked):
 
 # 문맥에 맞는 추천 단어 생성 함수(context_words_list())를 사용
 # default '중국은'
-def step_by_step_generate(sent = '중국은'):
+def step_by_step_generate():
     sent = input('입력 :: ')
     toked=tok(sent)
     
@@ -167,7 +167,6 @@ def oneQ_generate_rd(sent = '일본은', generate_num=3):
 def oneQ_generate(sent = '일본은'):
     #sent = input('입력 : ')
 
-    sent = text
     toked = tok(sent)
     sent_cnt = 0
 
