@@ -6,8 +6,11 @@ from django.utils import timezone
 
 from .forms import ArticleForm
 from .models import Article
-from .my_function import *
 
+#from .my_function import *
+
+# 실험해보고싶은데 어캐할지 성구형이만든 페이지로 열어볼수가없넹
+from .sw_gpt_function import *
 
 class IndexView(generic.ListView):
     template_name = 'sg/index.html'
@@ -41,7 +44,8 @@ def results(request):
             keyword = request.POST.get('keyword', '')
             
             #ret = generate_3rd(keyword)
-            ret = generate_text(keyword)
+            #ret = generate_text(keyword)
+            ret = oneQ_generate_rd(keyword)
             
             form.text = ret
             ctx = {

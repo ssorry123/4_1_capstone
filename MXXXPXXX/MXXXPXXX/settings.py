@@ -29,7 +29,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'appGPT.apps.AppgptConfig',
     'sg.apps.SgConfig',
     'django.contrib.admin',
     'django.contrib.auth',
