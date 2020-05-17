@@ -177,7 +177,7 @@ def one_sentence_generate(sent = '한국은', do_sample=True):
     outputs = model.generate(input_ids=input_ids,
                              max_length=50,
                              repetition_penalty=1.2,
-                             do_sample=True,
+                             do_sample=do_sample,
                              num_return_sequences=1)
     print(outputs)
     toked = vocab.to_tokens(outputs[0].squeeze().tolist())
