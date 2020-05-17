@@ -1,4 +1,5 @@
-#version 2020_05_16(1st)
+#version 2020_05_16(1)
+#version 2020_05_17(2)
 print('sw_gpt_function.py loading')
 
 '''
@@ -52,7 +53,8 @@ model, vocab = get_pytorch_kogpt2_model()
 '''
     5. 정의된 함수들
     단어 추천 함수 : words_list, context_words_list,
-    문장 생성 함수 : step_by_step_generate,  oneQ_generate_rd,  oneQ_generate
+    문장 생성 함수 : step_by_step_generate, serveral_sentence_generate, one_sentence_generate,
+
     확률 계산은 모르겠다.
     ***주의사항***
     @@@!!! 모두 장고에 맞게 추후 수정 필요!!!@@@
@@ -82,8 +84,7 @@ def words_list(words):
         ret.append(gen)
 
     return ret
-# 예시
-print(words_list('중국은'))
+
 
 
 # 문맥에 맞는 추천 단어 생성
@@ -130,15 +131,14 @@ def step_by_step_generate():
         toked=tok(sent)
         
     print(sent)
-        
-#step_by_step_generate()
+    return sent
 
 
-# 이 함수는 한 문장이나 단어가 들어오면
-# generate함수로 다이렉트로 1개이상의 문장을 만들어낸다.
-# 따라서 추천 단어를 사용할 수 없다.
+
+# 두개 이상의 문장을 생성
 # return은 str의 리스트
-def oneQ_generate_rd(sent = '일본은', generate_num=3):
+# 추천 단어 사용 불가
+def serveral_sentence_generate(sent = '일본은', generate_num=3):
     #sent = input('입력 : ')
     ret_list = list()
     toked=tok(sent)
@@ -148,23 +148,25 @@ def oneQ_generate_rd(sent = '일본은', generate_num=3):
     # num_return_sequences 생성할 문장 개수
     
     outputs = model.generate(input_ids=input_ids,
-                             max_lenght=160,
+                             max_length=50,
                              repetition_penalty=1.2,
                              do_sample=True,
-                            num_return_sequences = generate_num)
+                             num_return_sequences = generate_num)
     
     for i in range(generate_num):
-        toked = vocab.to_tokens(ouputs[0][i].squeeze().tolist())
+        toked = vocab.to_tokens(outputs[0][i].squeeze().tolist())
         ret = re.sub(r'(<s>|</s>)', '' , ''.join(toked).replace('▁', ' ').strip())
         ret_list.append(ret)
         
     return ret_list
+
+
     
-    
-# 단어가 들어오면
-# generate함수로 다이렉트로 1 문장을 만들어낸다.
-# 성구형거와 다 같음 단지 3에서 1로 변했을뿐
-def oneQ_generate(sent = '일본은'):
+# 한 문장을 만들어낸다 return은 str
+# option 설정 do_sample=False -> 항상 같은 문장 만듬
+# 여러 문장 만들어내는 함수와 toked 부분이 다름
+# 추천 단어 사용 불가
+def one_sentence_generate(sent = '한국은', do_sample=True):
     #sent = input('입력 : ')
 
     toked = tok(sent)
@@ -176,12 +178,10 @@ def oneQ_generate(sent = '일본은'):
                              max_length=50,
                              repetition_penalty=1.2,
                              do_sample=True,
-                             eos_token_ids=-1,
                              num_return_sequences=1)
-    
-    toked = vocab.to_tokens(outputs[0][1].squeeze().tolist())
+    print(outputs)
+    toked = vocab.to_tokens(outputs[0].squeeze().tolist())
     ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁', ' ').strip())
         
     return ret
-    
     
