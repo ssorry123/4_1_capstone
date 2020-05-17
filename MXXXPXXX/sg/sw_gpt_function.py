@@ -90,10 +90,11 @@ def words_list(words):
 # 문맥에 맞는 추천 단어 생성
 # 위 words_list와 다르게 문맥을 전달해주어야함
 # pred = 단순 str이 아닌 model 변수, ret은 list{str}
-def context_words_list(pred, toked):
+def context_words_list(pred):
     ret = list()  # 추천 단어를 담을 list
     _pred=pred    # 전달 받은 입력된 단어들,문맥
-    cnt=len(toked)-1    # 여러 단어를 입력했을 수 있으므로 반드시 필요
+    
+    cnt=len(_pred[0])-2    # 여러 단어를 입력했을 수 있으므로 반드시 필요
     
     sort=torch.argsort(-_pred, axis=-1)[0]  # 확률이 큰 기준으로 정렬
     for i in range(0,10):
@@ -118,7 +119,7 @@ def step_by_step_generate():
         pred = model(input_ids)[0]
         
         # 추천 단어 보여주기, 문맥 적용
-        print(context_words_list(pred, toked))
+        print(context_words_list(pred))
         
         # 입력은 사용자가 하고 싶은거 하기
         # _은 스페이스바임. 추천그대로 하려면 반드시 입력할것
@@ -134,7 +135,6 @@ def step_by_step_generate():
         
     print(sent)
     return sent
-
 
 
 # 두개 이상의 문장을 생성
