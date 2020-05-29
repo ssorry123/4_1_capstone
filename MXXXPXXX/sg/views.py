@@ -5,69 +5,44 @@ from django.views import generic
 from django.utils import timezone
 
 from .forms import ArticleForm
+from .forms import ArticleTitle
 from .models import Article
 from .my_function import *
 
 
-class IndexView(generic.ListView):
-    template_name = 'sg/index.html'
-    context_object_name = 'latest_article_list'
-
-    def get_queryset(self):
-        return Article.objects.filter(
-            pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+# 단순히 HTML만 띄우는 코드
+def index(request):
+    return render(request, 'sg/index.html')
 
 
-class DetailView(generic.DetailView):
-    model = Article
-    template_name = 'sg/detail.html'
-
-    def get_queryset(self):
-        return Article.objects.filter(pub_date__lte=timezone.now())
-
-
-def post(request):
-    form = ArticleForm()
-    ctx = {
-        'form': form,
-    }
-    return render(request, 'sg/post.html', ctx)
-
-
-def results(request):
+# POST인경우 받아온 데이터를 처리하고 HTML에 넘겨줌
+def writing(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST)
-        if form.is_valid():
-            keyword = request.POST.get('keyword', '')
-            
-            #ret = generate_3rd(keyword)
-            ret = generate_text(keyword)
-            
-            form.text = ret
-            ctx = {
-                'form': form,
-                'ret': ret,
-            }
-            return render(request, 'sg/post.html', ctx)
+        # HTML에서 값 받아오는 법
+        title = request.POST['title']
+        content = request.POST['content']
+        # 문장 생성 함수
+        fin_content = generate_3rd(content)
+        ctx = {
+            'title': title,
+            'content': content,
+            'fin_content': fin_content,
+        }
     else:
-        form = ArticleForm()
+        ctx = {
+            'title': '',
+            'content': '',
+            'fin_content': '',
+        }
+    return render(request, 'sg/writing.html', ctx)
 
-    ctx = {
-        'form': form,
-    }
 
-    return render(request, 'sg/post.html', ctx)
-
-
+# DB에 저장하고 index페이지로 이동
+# ----------------DB불러오는거 아직 안함
 def save(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST)
-        if form.is_valid():
-            article = Article()
-            article.text = request.POST.get('ret', '')
-            article.keyword = form.cleaned_data['keyword']
-            article.title = form.cleaned_data['title']
-            article.save()
-            return redirect('sg:index')
+        title = request.POST['title']
+        fin_content = request.POST['fin_content']
 
+        # ------------------모델 불러와서 저장
     return redirect('sg:index')

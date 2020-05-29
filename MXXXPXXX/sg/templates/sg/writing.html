@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>MINE POST</title>
@@ -15,7 +16,8 @@
   <nav class="navbar navbar-custom navbar-static-top" id="navbar_top">
     <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -51,7 +53,8 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">정치 <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">정치
+              <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">청와대</a></li>
               <li><a href="#">북한</a></li>
@@ -60,7 +63,8 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">사회 <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">사회
+              <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">사건사고</a></li>
               <li><a href="#">지역</a></li>
@@ -69,7 +73,8 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">IT/과학 <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
+              aria-expanded="false">IT/과학 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">통신</a></li>
               <li><a href="#">모바일</a></li>
@@ -78,7 +83,8 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">문화/예술 <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
+              aria-expanded="false">문화/예술 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">여행/레저</a></li>
               <li><a href="#">패션/뷰티</a></li>
@@ -99,14 +105,14 @@
     <div class="row">
       <div class="col-xs-9 right_line">
         <div class="col-xs-12">
-          
+
           <label class="writing_title" for="title">글 스타일</label>
           <p>학습된 모델별로 글의 스타일이 달라집니다.</p>
 
           <br>
 
           <div class="form-group writing_model">
-            
+
             <div class="ccheck">
               <input type="checkbox" id="check_test1">
               <label for="check_test1">
@@ -143,59 +149,64 @@
             </div>
 
           </div>
-          
+
           <br>
           <br>
 
 
-          <div class="form-group">
-            <label class="writing_title" for="title">제목</label>
-            <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요">
-          </div>
-                  
+          <form action="" method="POST">
+            <div class="form-group">
+              <label class="writing_title" for="title">제목</label>
+              {% csrf_token %}
+              <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요" value="{{title}}">
+            </div>
 
-          <p class="btn_word_rank">실시간 단어 추천</p>
-          <button type="button" class="btn btn-default">_열심히</button>
-          <button type="button" class="btn btn-default">_좋은</button>
-          <button type="button" class="btn btn-default">_나은</button>
-          <button type="button" class="btn btn-default">_힘차게</button>
-          <button type="button" class="btn btn-default">_이상</button>
-          
-          <br>
-          <br>
 
-          <div class="form-group">
-            <label class="writing_title" for="content">내용</label>
-            <textarea class="form-control" rows="3" name="content" id="content" placeholder="첫 문장을 입력하세요"></textarea>
-          </div>
+            <p class="btn_word_rank">실시간 단어 추천</p>
+            <button type="button" class="btn btn-default">_열심히</button>
+            <button type="button" class="btn btn-default">_좋은</button>
+            <button type="button" class="btn btn-default">_나은</button>
+            <button type="button" class="btn btn-default">_힘차게</button>
+            <button type="button" class="btn btn-default">_이상</button>
 
-          <div class="text-center">
-            <button type="button" class="btn btn-info">뉴스 완성하기</button>
-          </div>          
-          <div class="form-group">
-            <label class="writing_title" for="fin_content">완성된 글</label>
-            <textarea class="form-control" rows="10" name="fin_content" id="fin_content" placeholder="글이 자동으로 완성됩니다"></textarea>
-          </div>
+            <br>
+            <br>
 
-          <div class="filebox">
-            <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
-            <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/>
-            <div id="image_container"></div>
-          </div>
-<!-- 
+            <div class="form-group">
+              <label class="writing_title" for="content">내용</label>
+              <textarea class="form-control" rows="3" name="content" id="content"
+                placeholder="첫 문장을 입력하세요">{{content}}</textarea>
+            </div>
+
+            <div class="text-center">
+              <input type="submit" class="btn btn-info" value="뉴스 완성하기">
+            </div>
+            <div class="form-group">
+              <label class="writing_title" for="fin_content">완성된 글</label>
+              <textarea class="form-control" rows="10" name="fin_content" id="fin_content"
+                placeholder="글이 자동으로 완성됩니다">{{fin_content}}</textarea>
+            </div>
+
+            <div class="filebox">
+              <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
+              <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" />
+              <div id="image_container"></div>
+            </div>
+            <!-- 
           <div class="filebox">
             <label class="writing_title" for="File" onchange="setThumbnail(event);">이미지 첨부하기</label>
             <input type="file" id="File">
           </div> -->
 
-          <br>
-          <br>
-          <br>
-          <div class="text-center">
-            <button type="button" class="btn btn-primary">업로드</button>
-          </div>
+            <br>
+            <br>
+            <br>
+            <div class="text-center">
+              <input type="submit" class="btn btn-primary" value="업로드" formaction="{% url 'sg:index' %}">
+            </div>
+          </form>
 
-          </div>
+        </div>
       </div>
 
       <div class="col-xs-3">
@@ -213,4 +224,5 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="../../static/sg/script.js"></script>
 </body>
+
 </html>
