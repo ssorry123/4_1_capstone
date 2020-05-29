@@ -4,6 +4,7 @@ KoGPT2 설치 방법
   $pip3 install -r requirements.txt
 3. KoGPT2를 설치한당
   $pip3 install .
+  
 Processing /home/park/cstproj/capstone/KoGPT2-master
 Building wheels for collected packages: kogpt2
 Building wheel for kogpt2 (setup.py) ... done
