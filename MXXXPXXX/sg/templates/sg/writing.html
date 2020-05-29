@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>MINE POST</title>
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="../../static/sg/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="shortcut icon" href="../../../../favicon.ico">
 </head>
@@ -88,8 +88,8 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#" class="mid_cat2">글쓰기 놀이터</a></li>
-          <li><a href="#" class="mid_cat2">GPT-2 체험</a></li>
+          <li><a href="#" class="mid_cat2"></a></li>
+          <li><a href="#" class="mid_cat2"></a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -99,29 +99,98 @@
     <div class="row">
       <div class="col-xs-9 right_line">
         <div class="col-xs-12">
+          
+          <label class="writing_title" for="title">글 스타일</label>
+          <p>학습된 모델별로 글의 스타일이 달라집니다.</p>
+
+          <br>
+
+          <div class="form-group writing_model">
+            
+            <div class="ccheck">
+              <input type="checkbox" id="check_test1">
+              <label for="check_test1">
+                <div class="chk_img">뉴스</div>
+              </label>
+            </div>
+
+            <div class="ccheck">
+              <input type="checkbox" id="check_test2">
+              <label for="check_test2">
+                <div class="chk_img">소설</div>
+              </label>
+            </div>
+
+            <div class="ccheck">
+              <input type="checkbox" id="check_test3">
+              <label for="check_test3">
+                <div class="chk_img">SNS</div>
+              </label>
+            </div>
+
+            <div class="ccheck">
+              <input type="checkbox" id="check_test4">
+              <label for="check_test4">
+                <div class="chk_img">체크</div>
+              </label>
+            </div>
+
+            <div class="ccheck">
+              <input type="checkbox" id="check_test5">
+              <label for="check_test5">
+                <div class="chk_img">체크</div>
+              </label>
+            </div>
+
+          </div>
+          
+          <br>
+          <br>
+
+
           <div class="form-group">
-            <label for="title">제목</label>
+            <label class="writing_title" for="title">제목</label>
             <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요">
           </div>
                   
+
+          <p class="btn_word_rank">실시간 단어 추천</p>
+          <button type="button" class="btn btn-default">_열심히</button>
+          <button type="button" class="btn btn-default">_좋은</button>
+          <button type="button" class="btn btn-default">_나은</button>
+          <button type="button" class="btn btn-default">_힘차게</button>
+          <button type="button" class="btn btn-default">_이상</button>
+          
+          <br>
+          <br>
+
           <div class="form-group">
-            <label for="content">내용</label>
-            <textarea class="form-control" rows="10" name="content" id="content" placeholder="내용을 입력하세요"></textarea>
+            <label class="writing_title" for="content">내용</label>
+            <textarea class="form-control" rows="3" name="content" id="content" placeholder="첫 문장을 입력하세요"></textarea>
           </div>
 
           <div class="text-center">
-            <button type="button" class="btn btn-primary">뉴스 완성하기</button>
+            <button type="button" class="btn btn-info">뉴스 완성하기</button>
           </div>          
           <div class="form-group">
-            <label for="content">완성된 글</label>
-            <textarea class="form-control" rows="10" name="content" id="content" placeholder="글이 자동으로 완성됩니다"></textarea>
+            <label class="writing_title" for="fin_content">완성된 글</label>
+            <textarea class="form-control" rows="10" name="fin_content" id="fin_content" placeholder="글이 자동으로 완성됩니다"></textarea>
           </div>
 
-          <div class="form-group">
-            <label for="File">첨부이미지</label>
-            <input type="file" id="File">
+          <div class="filebox">
+            <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
+            <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/>
+            <div id="image_container"></div>
           </div>
-          
+<!-- 
+          <div class="filebox">
+            <label class="writing_title" for="File" onchange="setThumbnail(event);">이미지 첨부하기</label>
+            <input type="file" id="File">
+          </div> -->
+
+          <br>
+          <br>
+          <br>
           <div class="text-center">
             <button type="button" class="btn btn-primary">업로드</button>
           </div>
@@ -131,16 +200,17 @@
 
       <div class="col-xs-3">
         <h1 class="findimg_title">이 사진은 어떠세요?</h1>
-        <img class="findimg" src="../../images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../images/thumbnail.jpg" alt="사진">
+        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
+        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
+        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
+        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
+        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
       </div>
     </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script src="../../static/sg/script.js"></script>
 </body>
 </html>

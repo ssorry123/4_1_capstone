@@ -97,25 +97,82 @@
 
   <!--몸통부 - 좌)메인뉴스 우)랭킹 -->
   <div class="container-non-responsive">
-    <div class="row">
-      <div class="col-xs-4"></div>
+    <div class="row bot">
 
-      <div class="col-xs-4">
-        <br><br>
-        <div class="form-group">
-          <input type="id" id="id" value='' placeholder="아이디" class="form-control" />
-        </div>
+      <br>
 
-        <div class="form-group cat_bot_line">
-          <input type="password" id="password" value='' placeholder="패스워드" class="form-control" />
-        </div>
-      
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">로그인</button>
-        </div>
+      <table class="table table-hover top">
+
+        <thead>
+          <tr>
+            <th></th>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>날짜</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+
+        <tbody class="bot_line">
+          <tr>
+            <td><input type="checkbox" name="xxx" value="yyy"></td>
+            <td>1</td>
+            <td>코로나 확산 주춤해..</td>
+            <td>소석진</td>
+            <td>2020.05.22</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="xxx" value="yyy"></td>
+            <td>2</td>
+            <td>코로나 확산 주춤해..</td>
+            <td>소석진</td>
+            <td>2020.05.22</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="xxx" value="yyy"></td>
+            <td>3</td>
+            <td>코로나 확산 주춤해..</td>
+            <td>소석진</td>
+            <td>2020.05.22</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="xxx" value="yyy"></td>
+            <td>4</td>
+            <td>코로나 확산 주춤해..</td>
+            <td>소석진</td>
+            <td>2020.05.22</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <a class="btn btn-default pull-right">삭제</a>
+
+      <br>
+      <br>
+
+      <nav class="text-center">
+        <ul class="pagination">
+          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    
       </div>
-
-      <div class="col-xs-4"></div>
     </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

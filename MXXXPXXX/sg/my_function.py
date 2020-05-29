@@ -9,18 +9,13 @@ from kogpt2.utils import get_tokenizer
 print("1")
 import os
 from kogpt2.utils import get_tokenizer
-from model.torch_gpt2 import GPT2Config, GPT2LMHeadModel
 import gluonnlp as nlp
-
-
-
 
 print("KoGPT2 불러오는중... 2/4")
 tok_path = get_tokenizer()
 tok = SentencepieceTokenizer(tok_path)
 model, vocab = get_pytorch_kogpt2_model()
 # ~문장 생성 속도 최적화(2020_05_07_12:00)
-
 
 print("학습된 파일 모델에 적용중... 3/4")
 # 학습된 모델 적용 (2020_05_07_15:02)~
