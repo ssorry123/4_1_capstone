@@ -17,6 +17,12 @@ Successfully installed kogpt2-0.1.0
 4. $pip3 freeze로 잘 설치된지 확인한다
 (kogpt2==0.1.0)
 
+*gluonnlp 만 임폴트가 안되는 경우
+$pip3 uninstall gluonnlp
+&pip3 install --upgrade mxnet>=1.6.0
+&pip3 install gluonnlp
+
+
 # MinePost
 
 ### 협업 방식: Forking
