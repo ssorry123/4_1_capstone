@@ -187,5 +187,3 @@ def one_sentence_generate(sent = '한국은', do_sample=True):
     ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁', ' ').strip())
         
     return ret
-    
-step_by_step_generate()
