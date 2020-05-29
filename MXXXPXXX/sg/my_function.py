@@ -3,12 +3,19 @@ import re
 import sys
 
 
+#from gptko.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+
 from gluonnlp.data import SentencepieceTokenizer
+
+#from gptko.kogpt2.utils import get_tokenizer
 from kogpt2.utils import get_tokenizer
 
 import os
+
+#from gptko.kogpt2.utils import get_tokenizer
 from kogpt2.utils import get_tokenizer
+
 import gluonnlp as nlp
 
 

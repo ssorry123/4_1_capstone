@@ -1,27 +1,13 @@
-KoGPT2 설치 방법
-1. KoGPT2-master 폴더로 들어간다
-2. KoGPT2 설치 및 사용할때 필요한 패키지를 설치한다(torch설치 오래걸림)
-  $pip3 install -r requirements.txt
-3. KoGPT2를 설치한당
-  $pip3 install .
-  
-Processing /home/park/cstproj/capstone/KoGPT2-master
-Building wheels for collected packages: kogpt2
-Building wheel for kogpt2 (setup.py) ... done
-Created wheel for kogpt2: filename=kogpt2-0.1.0-py3-none-any.whl size=22256 sha256=1ffa11870ef98516d928eb147fb7eb8e3150a30801ad57745c828fd93de8cf0a
-Stored in directory: /home/park/.cache/pip/wheels/21/cf/a3/ebb7d5e204db01b0cb253f82c5ac4e21c8c76c6e6ac81e8e06
-Successfully built kogpt2
-Installing collected packages: kogpt2
-Successfully installed kogpt2-0.1.0
+쉽게 kogpt2 설치해서 사용하기
 
-4. $pip3 freeze로 잘 설치된지 확인한다
-(kogpt2==0.1.0)
+1. 필요한것 다운로드
+skt KOGPT2 깃허브가서 requirements.txt다운받아서 필요한 패키지 다운로드하기
 
-*gluonnlp 만 임폴트가 안되는 경우
-$pip3 uninstall gluonnlp
-&pip3 install --upgrade mxnet>=1.6.0
-&pip3 install gluonnlp
+$pip3 install -r requirements.txt
 
+2. kogpt2 설치하기
+
+&pip3 install gptko
 
 # MinePost
 
