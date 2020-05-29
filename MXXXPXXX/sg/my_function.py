@@ -1,34 +1,23 @@
 import torch
 import re
 import sys
-sys.path.append('/workspace/KoGPT2/')
-print("모듈 적재중... 1/4")
+
+
 from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 from gluonnlp.data import SentencepieceTokenizer
 from kogpt2.utils import get_tokenizer
-print("1")
+
 import os
 from kogpt2.utils import get_tokenizer
 import gluonnlp as nlp
 
-print("KoGPT2 불러오는중... 2/4")
+
 tok_path = get_tokenizer()
 tok = SentencepieceTokenizer(tok_path)
 model, vocab = get_pytorch_kogpt2_model()
 # ~문장 생성 속도 최적화(2020_05_07_12:00)
 
-print("학습된 파일 모델에 적용중... 3/4")
-# 학습된 모델 적용 (2020_05_07_15:02)~
-'''
-load_path = '/workspace/KoGPT2/checkpoint/narrativeKoGPT2_checkpoint_112.tar'
-ctx='cpu'
-device = torch.device(ctx)
-checkpoint = torch.load(load_path, map_location=device) #튜닝한거 불러오고
-model.load_state_dict(checkpoint['model_state_dict'])  #모델에 적용
-'''
-# ~학습된 모델 적용 (2020_05_07_15:02)
 
-print("서버 준비중... 4/4 한번 더하게됨")
 
 
 def generate_text(text):
