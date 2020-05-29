@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="shortcut icon" href="../../../../favicon.ico">
 </head>
+{% load static %}
 
 <body>
   <!--헤더 (2중 구조)-->
@@ -24,10 +25,10 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">
-          <img id="logo_image" alt="Home" src="../../../../logo_image.png">
+          <img id="logo_image" alt="Home" src="{% static 'sg/images/logo_image.png' %}">
         </a>
         <a class="navbar-brand" href="#">
-          <img id="logo_text" alt="Home" src="../../../../logo_text.png">
+          <img id="logo_text" alt="Home" src="{% static 'sg/images/logo_text.png' %}">
         </a>
       </div>
 
