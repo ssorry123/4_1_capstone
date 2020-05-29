@@ -13,8 +13,6 @@ from kogpt2.utils import get_tokenizer
 
 import os
 
-#from gptko.kogpt2.utils import get_tokenizer
-from kogpt2.utils import get_tokenizer
 
 import gluonnlp as nlp
 
