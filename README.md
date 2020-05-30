@@ -1,7 +1,15 @@
+쉽게 kogpt2 설치해서 사용하기
+
+1. 필요한것 다운로드
+skt KOGPT2 깃허브가서 requirements.txt다운받아서 필요한 패키지 다운로드하기
+
+$pip3 install -r requirements.txt
+
+2. kogpt2 설치하기
+
+&pip3 install gptko
+
 # MinePost
-
-깃 풀 실험
-
 
 ### 협업 방식: Forking
 - 링크1: <https://gmlwjd9405.github.io/2017/10/28/how-to-collaborate-on-GitHub-2.html>

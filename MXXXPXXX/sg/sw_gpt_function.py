@@ -17,9 +17,10 @@ import re
 '''
     2. KoGPT2 package
 '''
-# local마다 import 방법이 상이할 수 있음(이름 지정) 각자 컴퓨터에 맞게.
-# 나중에 기회되면 통일하기로
-sys.path.append('/workspace/KoGPT2/')
+
+#from gptko.kogpt2.utils import get_tokenizer
+#from gptko.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+
 from kogpt2.utils import get_tokenizer
 from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 
@@ -186,4 +187,3 @@ def one_sentence_generate(sent = '한국은', do_sample=True):
     ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁', ' ').strip())
         
     return ret
-    
