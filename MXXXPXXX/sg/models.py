@@ -31,3 +31,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.name
 
+class Writing(models.Model):
+    title = models.CharField(max_length=100, verbose_name='기사 제목')
+    pub_date = models.DateTimeField(default=timezone.now, verbose_name='작성일')
+    scrap = models.IntegerField(default=0, verbose_name='스크랩 수')
+    text = models.CharField(max_length=1000, verbose_name='기사 내용')
+    #photo = models.ImageField(blank=True, upload_to="image", verbose_name='사진')
+    #저장할지 url만 저장할지 몰라서 일단 주석처리
+    def __str__(self):
+        return self.title
