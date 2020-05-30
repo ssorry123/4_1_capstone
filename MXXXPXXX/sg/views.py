@@ -4,9 +4,6 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .forms import ArticleForm
-from .forms import ArticleTitle
-from .models import Article
 from .my_function import *
 
 
