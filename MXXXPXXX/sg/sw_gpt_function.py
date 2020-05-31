@@ -53,7 +53,7 @@ model, vocab = get_pytorch_kogpt2_model()
 
 '''
     5. 정의된 함수들
-    단어 추천 함수 : words_list, context_words_list,
+    단어 추천 함수 : words_list, context_words_list, context_words_list2
     문장 생성 함수 : step_by_step_generate, serveral_sentence_generate, one_sentence_generate,
 
     확률 계산은 모르겠다.
@@ -94,6 +94,25 @@ def words_list(words):
 def context_words_list(pred):
     ret = list()  # 추천 단어를 담을 list
     _pred=pred    # 전달 받은 입력된 단어들,문맥
+    
+    cnt=len(_pred[0])-2    # 여러 단어를 입력했을 수 있으므로 반드시 필요
+    
+    sort=torch.argsort(-_pred, axis=-1)[0]  # 확률이 큰 기준으로 정렬
+    for i in range(0,10):
+        a=sort[cnt][i].squeeze().tolist()
+        b=sort[cnt+1][i].squeeze().tolist()
+        gen=vocab.to_tokens([b])    # 하나의 추천 단어
+        ret.append(gen)
+
+    return ret
+
+# tensor 형태로 변환하지 않고str만 전해줘도 문맥파악 후 추천 단어
+def context_words_list2(words):
+    ret = list()  # 추천 단어를 담을 list
+    
+    toked=tok(words)
+    input_ids=torch.tensor([vocab[vocab.bos_token],] + vocab[toked]).unsqueeze(0)
+    _pred = model(input_ids)[0]
     
     cnt=len(_pred[0])-2    # 여러 단어를 입력했을 수 있으므로 반드시 필요
     
