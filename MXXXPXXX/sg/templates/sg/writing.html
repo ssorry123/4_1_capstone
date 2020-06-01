@@ -24,10 +24,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'sg:index' %}">
           <img id="logo_image" alt="Home" src="{% static 'sg/images/logo_image.png' %}">
         </a>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'sg:index' %}">
           <img id="logo_text" alt="Home" src="{% static 'sg/images/logo_text.png' %}">
         </a>
       </div>
@@ -40,8 +40,10 @@
             </div>
             <button type="submit" class="btn btn-primary">검색</button>
           </form>
-          <button type="button" class="btn btn-primary navbar-btn">로그인</button>
-          <button type="button" class="btn btn-primary navbar-btn">회원가입</button>
+          <button type="button" class="btn btn-primary navbar-btn"
+            onclick="location.href='{% url 'sg:login' %}'">로그인</button>
+          <button type="button" class="btn btn-primary navbar-btn"
+            onclick="location.href='{% url 'sg:signup' %}'">회원가입</button>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -184,8 +186,8 @@
             </div>
             <div class="form-group">
               <label class="writing_title" for="fin_content">완성된 글</label>
-              <textarea class="form-control" rows="10" name="fin_content" id="fin_content"
-                placeholder="글이 자동으로 완성됩니다">{{fin_content}}</textarea>
+              <textarea class="form-control" rows="10" name="text" id="fin_content"
+                placeholder="글이 자동으로 완성됩니다">{{text}}</textarea>
             </div>
 
             <div class="filebox">
@@ -203,7 +205,7 @@
             <br>
             <br>
             <div class="text-center">
-              <input type="submit" class="btn btn-primary" value="업로드" formaction="{% url 'sg:index' %}">
+              <input type="submit" class="btn btn-primary" value="업로드" formaction="{% url 'sg:save' %}">
             </div>
           </form>
 
