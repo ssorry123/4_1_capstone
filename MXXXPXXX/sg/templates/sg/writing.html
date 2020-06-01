@@ -164,25 +164,35 @@
               <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요" value="{{title}}">
             </div>
 
+            <div class="form-group">
+              <label class="writing_title" for="content">실시간 단어 추천,, 구현 아직 못함</label>
+              <textarea class="form-control" rows="3" name="content" id="content"
+                placeholder="글을 작성하때 실시간으로 추천해주는 다음 단어를 보며 글을 작성할 수 있습니다">{{content}}</textarea>
+            </div>
 
             <p class="btn_word_rank">실시간 단어 추천</p>
-            <button type="button" class="btn btn-default">_열심히</button>
-            <button type="button" class="btn btn-default">_좋은</button>
-            <button type="button" class="btn btn-default">_나은</button>
-            <button type="button" class="btn btn-default">_힘차게</button>
-            <button type="button" class="btn btn-default">_이상</button>
+            <button type="button" class="btn btn-default">{{recommend.0.0.0}} , {{recommend.0.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.1.0.0}} , {{recommend.1.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.2.0.0}} , {{recommend.2.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.3.0.0}} , {{recommend.3.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.4.0.0}} , {{recommend.4.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.5.0.0}} , {{recommend.5.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.6.0.0}} , {{recommend.6.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.7.0.0}} , {{recommend.7.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.8.0.0}} , {{recommend.8.1}}%</button>
+            <button type="button" class="btn btn-default">{{recommend.9.0.0}} , {{recommend.9.1}}%</button>
 
             <br>
             <br>
 
             <div class="form-group">
-              <label class="writing_title" for="content">내용</label>
+              <label class="writing_title" for="content">두 문장 추가하기</label>
               <textarea class="form-control" rows="3" name="content" id="content"
-                placeholder="첫 문장을 입력하세요">{{content}}</textarea>
+                placeholder="몇개의 단어를 입력하세요. 완성된 글에 생성됩니다. ">{{content}}</textarea>
             </div>
 
             <div class="text-center">
-              <input type="submit" class="btn btn-info" value="뉴스 완성하기">
+              <input type="submit" class="btn btn-info" value="두 문장 추가하기">
             </div>
             <div class="form-group">
               <label class="writing_title" for="fin_content">완성된 글</label>

@@ -21,19 +21,38 @@ def writing(request):
         # HTML에서 값 받아오는 법
         title = request.POST['title']
         content = request.POST['content']
+        text = request.POST['text']
+
+
         # 문장 생성 함수
-        text = serveral_sentence_generate(content)
+        
+        gen = serveral_sentence_generate(content)
+        for i in range(len(gen)):
+            text = text + gen[i]
+        
+        '''
+        gen = one_sentence_generate(content)
+        text += gen
+        '''
+        
+        # 문장 추천 함수
+        recommend = context_words_list2(content)
+
         ctx = {
             'title': title,
-            'content': content,
+            'content': '',
             'text': text,
+            'recommend':recommend
         }
+
     else:
         ctx = {
             'title': '',
             'content': '',
             'text': '',
+            'recommend':[["M",0],["I",1],["N",2],["E",3],["P",4],["O",5],["S",6],["T",7],["?",8],["!",9]]
         }
+
     return render(request, 'sg/writing.html', ctx)
 
 

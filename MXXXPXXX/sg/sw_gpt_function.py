@@ -16,11 +16,11 @@ import re
     2. KoGPT2 package
 '''
 
-#from gptko.kogpt2.utils import get_tokenizer
-#from gptko.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+from gptko.kogpt2.utils import get_tokenizer
+from gptko.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 
-from kogpt2.utils import get_tokenizer
-from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+#from kogpt2.utils import get_tokenizer
+#from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 
 '''
 3. 함수에서 사용할 전역변수 tok_path, tok, model, vocab
@@ -98,8 +98,9 @@ def context_words_list(pred):
     for i in range(0, 10):
         a = sort[cnt][i].squeeze().tolist()
         b = sort[cnt + 1][i].squeeze().tolist()
+        h =_pred[0][cnt+1][b].squeeze().tolist() # 확률 야매
         gen = vocab.to_tokens([b])  # 하나의 추천 단어
-        ret.append(gen)
+        ret.append([gen, round(h/2,2)])
 
     return ret
 
@@ -120,8 +121,9 @@ def context_words_list2(words):
     for i in range(0, 10):
         a = sort[cnt][i].squeeze().tolist()
         b = sort[cnt + 1][i].squeeze().tolist()
+        h =_pred[0][cnt+1][b].squeeze().tolist() # 확률 야매
         gen = vocab.to_tokens([b])  # 하나의 추천 단어
-        ret.append(gen)
+        ret.append([gen,round(h/2,2)])
 
     return ret
 
@@ -162,7 +164,7 @@ def step_by_step_generate():
 # 두개 이상의 문장을 생성
 # return은 str의 리스트
 # 추천 단어 사용 불가
-def serveral_sentence_generate(sent='일본은', generate_num=3):
+def serveral_sentence_generate(sent='일본은', generate_num=2):
     #sent = input('입력 : ')
     ret_list = list()
     toked = tok(sent)
