@@ -22,7 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['name', 'email']
 
     def __str__(self):
-        return self.userid
+        return self.name
 
 
 class Writing(models.Model):
