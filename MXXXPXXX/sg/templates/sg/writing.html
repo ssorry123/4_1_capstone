@@ -7,7 +7,12 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
   <link rel="stylesheet" type="text/css" href="../../static/sg/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
   <link rel="shortcut icon" href="../../../../favicon.ico">
+
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="../../static/sg/script.js"></script>
 </head>
 {% load static %}
 
@@ -24,10 +29,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'sg:index' %}">
+        <a class="navbar-brand" href="#">
           <img id="logo_image" alt="Home" src="{% static 'sg/images/logo_image.png' %}">
         </a>
-        <a class="navbar-brand" href="{% url 'sg:index' %}">
+        <a class="navbar-brand" href="#">
           <img id="logo_text" alt="Home" src="{% static 'sg/images/logo_text.png' %}">
         </a>
       </div>
@@ -40,10 +45,8 @@
             </div>
             <button type="submit" class="btn btn-primary">검색</button>
           </form>
-          <button type="button" class="btn btn-primary navbar-btn"
-            onclick="location.href='{% url 'sg:login' %}'">로그인</button>
-          <button type="button" class="btn btn-primary navbar-btn"
-            onclick="location.href='{% url 'sg:signup' %}'">회원가입</button>
+          <button type="button" class="btn btn-primary navbar-btn">로그인</button>
+          <button type="button" class="btn btn-primary navbar-btn">회원가입</button>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -106,62 +109,79 @@
 
   <div class="container-non-responsive">
     <div class="row">
-      <div class="col-xs-9 right_line">
-        <div class="col-xs-12">
-
-          <label class="writing_title" for="title">글 스타일</label>
-          <p>학습된 모델별로 글의 스타일이 달라집니다.</p>
+      <div class="col-xs-12">
+      </div>
+        <div class="col-xs-10">
 
           <br>
 
-          <div class="form-group writing_model">
+          <div class="ai_box">
+            <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;멀티 모델</h1>
+            <p class="ai_summarize">다양한 글의 스타일을 체험해보세요.</p>
 
-            <div class="ccheck">
-              <input type="checkbox" id="check_test1">
-              <label for="check_test1">
-                <div class="chk_img">뉴스</div>
-              </label>
+            <br>
+
+            <div class="form-group writing_model">
+              <div class="ccheck">
+                <input type="checkbox" id="check_test1">
+                <label for="check_test1">
+                  <div class="chk_img mm_1">뉴스</div>
+                </label>
+              </div>
+
+              <div class="ccheck">
+                <input type="checkbox" id="check_test2">
+                <label for="check_test2">
+                  <div class="chk_img mm_2">소설</div>
+                </label>
+              </div>
+
+              <div class="ccheck">
+                <input type="checkbox" id="check_test3">
+                <label for="check_test3">
+                  <div class="chk_img mm_3">SNS</div>
+                </label>
+              </div>
+
+              <div class="ccheck">
+                <input type="checkbox" id="check_test4">
+                <label for="check_test4">
+                  <div class="chk_img mm_4">버스커<br>버스커</div>
+                </label>
+              </div>
+
+              <!-- <div class="ccheck">
+                <input type="checkbox" id="check_test5">
+                <label for="check_test5">
+                  <div class="chk_img mm_5">체크</div>
+                </label>
+              </div> -->
+              
             </div>
-
-            <div class="ccheck">
-              <input type="checkbox" id="check_test2">
-              <label for="check_test2">
-                <div class="chk_img">소설</div>
-              </label>
-            </div>
-
-            <div class="ccheck">
-              <input type="checkbox" id="check_test3">
-              <label for="check_test3">
-                <div class="chk_img">SNS</div>
-              </label>
-            </div>
-
-            <div class="ccheck">
-              <input type="checkbox" id="check_test4">
-              <label for="check_test4">
-                <div class="chk_img">체크</div>
-              </label>
-            </div>
-
-            <div class="ccheck">
-              <input type="checkbox" id="check_test5">
-              <label for="check_test5">
-                <div class="chk_img">체크</div>
-              </label>
-            </div>
-
           </div>
+          
+          <div class="form-group">
+            <label class="writing_title" for="content">카테고리</label>
 
-          <br>
-          <br>
-
-
+            <!-- <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                카테고리
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+              </ul>
+            </div>
+          </div> -->
+          
           <form action="" method="POST">
             <div class="form-group">
               <label class="writing_title" for="title">제목</label>
               {% csrf_token %}
-              <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요" value="{{title}}">
+              <input type="text" class="form-control" name="title" id="title" onkeyup="recommendTitle(this.value)" placeholder="제목을 입력하세요" value="{{title}}">
             </div>
 
             <div class="form-group">
@@ -170,18 +190,16 @@
                 placeholder="글을 작성하때 실시간으로 추천해주는 다음 단어를 보며 글을 작성할 수 있습니다">{{content}}</textarea>
             </div>
 
-            <p class="btn_word_rank">실시간 단어 추천</p>
-            <button type="button" class="btn btn-default">{{recommend.0.0.0}} , {{recommend.0.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.1.0.0}} , {{recommend.1.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.2.0.0}} , {{recommend.2.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.3.0.0}} , {{recommend.3.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.4.0.0}} , {{recommend.4.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.5.0.0}} , {{recommend.5.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.6.0.0}} , {{recommend.6.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.7.0.0}} , {{recommend.7.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.8.0.0}} , {{recommend.8.1}}%</button>
-            <button type="button" class="btn btn-default">{{recommend.9.0.0}} , {{recommend.9.1}}%</button>
-
+            <div class="ai_box">
+                <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;실시간 단어 추천</h1>
+                <p class="ai_summarize">다음 단어를 추천해드립니다.</p>
+                <br>
+              <input type="button" id="result1" class="btn btn-default" onclick="addTitle(this.value)" value="_열심히">
+              <input type="button" id="result2" class="btn btn-default" onclick="addTitle(this.value)" value="_좋은">
+              <input type="button" id="result3" class="btn btn-default" onclick="addTitle(this.value)" value="_나은">
+              <input type="button" id="result4" class="btn btn-default" onclick="addTitle(this.value)" value="_힘차게">
+              <input type="button" id="result5" class="btn btn-default" onclick="addTitle(this.value)" value="_이상">
+            </div>
             <br>
             <br>
 
@@ -199,43 +217,46 @@
               <textarea class="form-control" rows="10" name="text" id="fin_content"
                 placeholder="글이 자동으로 완성됩니다">{{text}}</textarea>
             </div>
+            <br>
 
-            <div class="filebox">
-              <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
-              <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" />
-              <div id="image_container"></div>
-            </div>
             <!-- 
           <div class="filebox">
             <label class="writing_title" for="File" onchange="setThumbnail(event);">이미지 첨부하기</label>
             <input type="file" id="File">
           </div> -->
 
+            <div class="ai_box">
+              <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
+              <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
+              <input class="findimg" type="image" id="findimg1" onclick="mark(this)" src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg2" onclick="mark(this)" src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg3" onclick="mark(this)" src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg4" onclick="mark(this)" src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg5" onclick="mark(this)" src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg6" onclick="mark(this)" src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
+              <br>
+
+              <!-- <div class="filebox">
+                <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
+                <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" />
+                <div id="image_container"></div>
+              </div> -->
+
+            </div>
+
             <br>
             <br>
             <br>
             <div class="text-center">
-              <input type="submit" class="btn btn-primary" value="업로드" formaction="{% url 'sg:save' %}">
+              <input type="submit" class="btn btn-primary btn-lg" value="업로드" formaction="{% url 'sg:index' %}">
             </div>
           </form>
 
         </div>
       </div>
 
-      <div class="col-xs-3">
-        <h1 class="findimg_title">이 사진은 어떠세요?</h1>
-        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
-        <img class="findimg" src="../../static/sg/images/thumbnail.jpg" alt="사진">
-      </div>
     </div>
   </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="../../static/sg/script.js"></script>
 </body>
 
 </html>
