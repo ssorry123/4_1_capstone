@@ -11,7 +11,6 @@ import random
 import torch
 from gluonnlp.data import SentencepieceTokenizer
 import re
-
 '''
     2. KoGPT2 package
 '''
@@ -21,7 +20,6 @@ from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 
 #from kogpt2.utils import get_tokenizer
 #from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
-
 '''
 3. 함수에서 사용할 전역변수 tok_path, tok, model, vocab
 '''
@@ -40,12 +38,10 @@ tok = SentencepieceTokenizer(tok_path)
 # 3) 한번 다운로드 후 특별한 일이 없는 한 다운하지 않고
 # 다운되어 있는 파일을 사용 (using cached model)
 model, vocab = get_pytorch_kogpt2_model()
-
 '''
 #   4. fine turning한 것을 모델에 적용하기
 '''
 # 미적용
-
 '''
     5. 정의된 함수들
     단어 추천 함수 : words_list, context_words_list, context_words_list2
@@ -98,9 +94,9 @@ def context_words_list(pred):
     for i in range(0, 10):
         a = sort[cnt][i].squeeze().tolist()
         b = sort[cnt + 1][i].squeeze().tolist()
-        h =_pred[0][cnt+1][b].squeeze().tolist() # 확률 야매
+        h = _pred[0][cnt + 1][b].squeeze().tolist()  # 확률 야매
         gen = vocab.to_tokens([b])  # 하나의 추천 단어
-        ret.append([gen, round(h/2,2)])
+        ret.append([gen, round(h / 2, 2)])
 
     return ret
 
@@ -121,9 +117,9 @@ def context_words_list2(words):
     for i in range(0, 10):
         a = sort[cnt][i].squeeze().tolist()
         b = sort[cnt + 1][i].squeeze().tolist()
-        h =_pred[0][cnt+1][b].squeeze().tolist() # 확률 야매
+        h = _pred[0][cnt + 1][b].squeeze().tolist()  # 확률 야매
         gen = vocab.to_tokens([b])  # 하나의 추천 단어
-        ret.append([gen,round(h/2,2)])
+        ret.append([gen, round(h / 2, 2)])
 
     return ret
 
