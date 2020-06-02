@@ -27,7 +27,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Writing(models.Model):
     # 작성한사람이 없다
+    objects = UserManager()
     title = models.CharField(max_length=100, verbose_name='기사 제목')
+    writer = models.CharField(default=objects.name,
+                              max_length=20,
+                              null=True,
+                              unique=True)
     pub_date = models.DateTimeField(default=timezone.now, verbose_name='작성일')
     scrap = models.IntegerField(default=0, verbose_name='스크랩 수')
     text = models.CharField(max_length=1000, verbose_name='기사 내용')

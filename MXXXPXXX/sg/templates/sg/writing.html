@@ -180,6 +180,7 @@
           </div> -->
 
           <form action="" method="POST">
+            <input type="hidden" name="writer" value="{{user.userid}}">
             <div class="form-group">
               <label class="writing_title" for="title">제목</label>
               {% csrf_token %}

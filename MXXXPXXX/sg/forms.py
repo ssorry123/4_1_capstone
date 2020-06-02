@@ -5,7 +5,7 @@ from .models import User, Writing
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Writing
-        fields = ['title', 'text']
+        fields = ['title', 'text', 'writer']
 
 
 class UserForm(forms.ModelForm):
