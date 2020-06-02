@@ -7,7 +7,7 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
   <link rel="stylesheet" type="text/css" href="../../static/sg/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
   <link rel="shortcut icon" href="../../../../favicon.ico">
 
   <script src="//code.jquery.com/jquery.min.js"></script>
@@ -113,59 +113,59 @@
     <div class="row">
       <div class="col-xs-12">
       </div>
-        <div class="col-xs-10">
+      <div class="col-xs-10">
+
+        <br>
+
+        <div class="ai_box">
+          <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;멀티 모델</h1>
+          <p class="ai_summarize">다양한 글의 스타일을 체험해보세요.</p>
 
           <br>
 
-          <div class="ai_box">
-            <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;멀티 모델</h1>
-            <p class="ai_summarize">다양한 글의 스타일을 체험해보세요.</p>
+          <div class="form-group writing_model">
+            <div class="ccheck">
+              <input type="checkbox" id="check_test1">
+              <label for="check_test1">
+                <div class="chk_img mm_1">뉴스</div>
+              </label>
+            </div>
 
-            <br>
+            <div class="ccheck">
+              <input type="checkbox" id="check_test2">
+              <label for="check_test2">
+                <div class="chk_img mm_2">소설</div>
+              </label>
+            </div>
 
-            <div class="form-group writing_model">
-              <div class="ccheck">
-                <input type="checkbox" id="check_test1">
-                <label for="check_test1">
-                  <div class="chk_img mm_1">뉴스</div>
-                </label>
-              </div>
+            <div class="ccheck">
+              <input type="checkbox" id="check_test3">
+              <label for="check_test3">
+                <div class="chk_img mm_3">SNS</div>
+              </label>
+            </div>
 
-              <div class="ccheck">
-                <input type="checkbox" id="check_test2">
-                <label for="check_test2">
-                  <div class="chk_img mm_2">소설</div>
-                </label>
-              </div>
+            <div class="ccheck">
+              <input type="checkbox" id="check_test4">
+              <label for="check_test4">
+                <div class="chk_img mm_4">버스커<br>버스커</div>
+              </label>
+            </div>
 
-              <div class="ccheck">
-                <input type="checkbox" id="check_test3">
-                <label for="check_test3">
-                  <div class="chk_img mm_3">SNS</div>
-                </label>
-              </div>
-
-              <div class="ccheck">
-                <input type="checkbox" id="check_test4">
-                <label for="check_test4">
-                  <div class="chk_img mm_4">버스커<br>버스커</div>
-                </label>
-              </div>
-
-              <!-- <div class="ccheck">
+            <!-- <div class="ccheck">
                 <input type="checkbox" id="check_test5">
                 <label for="check_test5">
                   <div class="chk_img mm_5">체크</div>
                 </label>
               </div> -->
-              
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label class="writing_title" for="content">카테고리</label>
 
-            <!-- <div class="dropdown">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="writing_title" for="content">카테고리</label>
+
+          <!-- <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                 카테고리
                 <span class="caret"></span>
@@ -178,29 +178,32 @@
               </ul>
             </div>
           </div> -->
-          
+
           <form action="" method="POST">
             <div class="form-group">
               <label class="writing_title" for="title">제목</label>
               {% csrf_token %}
-              <input type="text" class="form-control" name="title" id="title" onkeyup="recommendTitle(this.value)" placeholder="제목을 입력하세요" value="{{title}}">
+              <input type="text" class="form-control" name="title" id="title"
+                onkeyup="recommendTitle(this.value, '{{ csrf_token }}')" placeholder="제목을 입력하세요" value="{{title}}">
             </div>
 
             <div class="form-group">
               <label class="writing_title" for="content">실시간 단어 추천</label>
 
-              <textarea class="form-control" rows="3" name="content" id="content"onkeyup="recommendTitle(this.value)" placeholder="글을 작성할 때 실시간으로 추천해주는 다음 단어를 보며 글을 작성할 수 있습니다" value="{{content}}">{{content}}</textarea>
+              <textarea class="form-control" rows="3" id="content"
+                onkeyup="recommendTitle(this.value, '{{ csrf_token }')"
+                placeholder="글을 작성할 때 실시간으로 추천해주는 다음 단어를 보며 글을 작성할 수 있습니다"></textarea>
             </div>
 
             <div class="ai_box">
-                <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;실시간 단어 추천</h1>
-                <p class="ai_summarize">다음 단어를 추천해드립니다.</p>
-                <br>
-              <input type="button" id="result1" class="btn btn-default" onclick="addTitle(this.value)" value="_열심히">
-              <input type="button" id="result2" class="btn btn-default" onclick="addTitle(this.value)" value="_좋은">
-              <input type="button" id="result3" class="btn btn-default" onclick="addTitle(this.value)" value="_나은">
-              <input type="button" id="result4" class="btn btn-default" onclick="addTitle(this.value)" value="_힘차게">
-              <input type="button" id="result5" class="btn btn-default" onclick="addTitle(this.value)" value="_이상">
+              <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;실시간 단어 추천</h1>
+              <p class="ai_summarize">다음 단어를 추천해드립니다.</p>
+              <br>
+              <input type="button" id="result1" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')" value="_열심히">
+              <input type="button" id="result2" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')" value="_좋은">
+              <input type="button" id="result3" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')" value="_나은">
+              <input type="button" id="result4" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')" value="_힘차게">
+              <input type="button" id="result5" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')" value="_이상">
             </div>
             <br>
             <br>
@@ -211,7 +214,7 @@
                 placeholder="몇개의 단어를 입력하세요. 완성된 글에 생성됩니다. ">{{content}}</textarea>
             </div>
 
-            <div class="text-center">
+            <div class=" text-center">
               <input type="submit" class="btn btn-info" value="두 문장 추가하기">
             </div>
             <div class="form-group">
@@ -230,12 +233,18 @@
             <div class="ai_box">
               <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
               <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
-              <input class="findimg" type="image" id="findimg1" onclick="mark(this)" src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg2" onclick="mark(this)" src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg3" onclick="mark(this)" src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg4" onclick="mark(this)" src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg5" onclick="mark(this)" src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg6" onclick="mark(this)" src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg1" onclick="mark(this)"
+                src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg2" onclick="mark(this)"
+                src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg3" onclick="mark(this)"
+                src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg4" onclick="mark(this)"
+                src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg5" onclick="mark(this)"
+                src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
+              <input class="findimg" type="image" id="findimg6" onclick="mark(this)"
+                src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
               <br>
 
               <!-- <div class="filebox">
@@ -250,7 +259,7 @@
             <br>
             <br>
             <div class="text-center">
-              <input type="submit" class="btn btn-primary btn-lg" value="업로드" formaction="{% url 'sg:index' %}">
+              <input type="submit" class="btn btn-primary btn-lg" value="업로드" formaction="{% url 'sg:save' %}">
             </div>
           </form>
 

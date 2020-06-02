@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import auth
+import json
 
 from .models import Writing
 from .forms import UserForm, ArticleForm
@@ -23,18 +24,16 @@ def writing(request):
         content = request.POST['content']
         text = request.POST['text']
 
-
         # 문장 생성 함수
-        
+
         gen = serveral_sentence_generate(content)
         for i in range(len(gen)):
             text = text + gen[i]
-        
         '''
         gen = one_sentence_generate(content)
         text += gen
         '''
-        
+
         # 문장 추천 함수
         recommend = context_words_list2(content)
 
@@ -42,15 +41,19 @@ def writing(request):
             'title': title,
             'content': '',
             'text': text,
-            'recommend':recommend
+            'recommend': recommend,
         }
 
     else:
         ctx = {
-            'title': '',
-            'content': '',
-            'text': '',
-            'recommend':[["M",0],["I",1],["N",2],["E",3],["P",4],["O",5],["S",6],["T",7],["?",8],["!",9]]
+            'title':
+            '',
+            'content':
+            '',
+            'text':
+            '',
+            'recommend': [["M", 0], ["I", 1], ["N", 2], ["E", 3], ["P", 4],
+                          ["O", 5], ["S", 6], ["T", 7], ["?", 8], ["!", 9]],
         }
 
     return render(request, 'sg/writing.html', ctx)
@@ -96,3 +99,13 @@ def login(request):
 
     else:
         return render(request, 'sg/login.html')
+
+
+def recommend_words(request):
+    if request.method == "POST":
+        content = request.POST["content"]
+        recommend = context_words_list2(content)
+        ctx = {
+            'recommend': recommend[0][0][0],
+        }
+        return HttpResponse(json.dumps(ctx), content_type="application/json")
