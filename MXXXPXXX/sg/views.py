@@ -104,8 +104,11 @@ def login(request):
 def recommend_words(request):
     if request.method == "POST":
         content = request.POST["content"]
-        recommend = context_words_list2(content)
+        words_list = context_words_list2(content)
+        recommend = []
+        for i in range(5):
+            recommend.append(words_list[i][0][0])
         ctx = {
-            'recommend': recommend[0][0][0],
+            'recommend': recommend,
         }
         return HttpResponse(json.dumps(ctx), content_type="application/json")

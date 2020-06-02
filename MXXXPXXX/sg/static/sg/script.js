@@ -17,19 +17,18 @@ function setThumbnail(event) {
 //제목 단어 추천
 
 function recommendTitle(val, csrf_token) {
-  var recommend = "";
   $.ajax({
     type: "POST",
     url: "recommend/",
     data: { 'content': val, 'csrfmiddlewaretoken': csrf_token },
     dataType: "json",
     success: function (response) {
-      recommend = response.recommend;
-      var res1 = val + recommend;
-      var res2 = val;
-      var res3 = val;
-      var res4 = val;
-      var res5 = val;
+      var recommend = response.recommend;
+      var res1 = recommend[0];
+      var res2 = recommend[1];
+      var res3 = recommend[2];
+      var res4 = recommend[3];
+      var res5 = recommend[4];
 
       if (val == "") {
         document.getElementById('result').value = "0";
@@ -45,8 +44,8 @@ function recommendTitle(val, csrf_token) {
 }
 
 function addTitle(val, csrf_token) {
-  var new_title = val
-  document.getElementById('title').value = val
+  var new_title = document.getElementById('title').value + val;
+  document.getElementById('title').value = new_title;
   recommendTitle(new_title, csrf_token);
 }
 
