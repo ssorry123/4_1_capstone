@@ -36,15 +36,17 @@ def writing(request):
         title = request.POST['title']
         content = request.POST['content']
         text = request.POST['text']
-
+        links = ''
         # 문장 생성 함수
 
         gen = serveral_sentence_generate(content)
         for i in range(len(gen)):
             text = text + gen[i]
-
-        collect = collect_links.CollectLinks()
-        links = collect.google_full(title)
+        if request.GET.get('type') == 'image':
+            if title == '':
+                return redirect('sg:writing')
+            collect = collect_links.CollectLinks()
+            links = collect.google_full(title)
 
         ctx = {
             'title': title,
@@ -130,21 +132,6 @@ def detail(request, pk):
         'article': article,
     }
     return render(request, 'sg/news_detail.html', context)
-
-
-def crawling_images(request):
-    if request.method == "POST":
-        title = request.POST['title']
-        if title == '':
-            return redirect('sg:writing')
-        collect = collect_links.CollectLinks()
-        links = collect.google_full(title)
-        context = {
-            'links': links,
-        }
-        return render(request, 'sg/writing.html', context)
-    else:
-        return redirect('sg:writing')
 
 
 def list(request):

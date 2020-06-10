@@ -177,7 +177,7 @@ class CollectLinks:
                     links.append(src)
                     print('%d: %s' % (count, src))
                     count += 1
-                    if count > 10:
+                    if count > 9:
                         break
 
             except StaleElementReferenceException:

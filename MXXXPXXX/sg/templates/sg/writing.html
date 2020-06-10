@@ -47,6 +47,8 @@
           </form>
           {% if user.is_authenticated %}
           <!-- 로그인한 경우 -->
+          <button type="button" class="btn btn-success navbar-btn"
+            onclick="location.href='{% url 'sg:writing' %}'">글쓰기</button>
           <button type="button" class="btn btn-primary navbar-btn"
             onclick="location.href='{% url 'sg:logout' %}'">로그아웃</button>
           {% else %}
@@ -176,98 +178,101 @@
           <label class="writing_title" for="content">카테고리</label>
 
           <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                카테고리
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">정치</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">사회</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">IT/과학</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">문화/예술</a></li>
-              </ul>
-            </div>
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+              aria-expanded="true" name="category">
+              카테고리
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1">정치</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1">사회</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1">IT/과학</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1">문화/예술</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <form action="" method="POST">
+          <input type="hidden" name="writer" value="{{user.userid}}">
+          <div class="form-group">
+            <label class="writing_title" for="title">제목</label>
+            {% csrf_token %}
+            <input type="text" class="form-control" name="title" id="title"
+              onkeyup="recommendTitle(this.value, '{{ csrf_token }}')" placeholder="제목을 입력하세요" value="{{title}}">
           </div>
 
-          <form action="" method="POST">
-            <input type="hidden" name="writer" value="{{user.userid}}">
-            <div class="form-group">
-              <label class="writing_title" for="title">제목</label>
-              {% csrf_token %}
-              <input type="text" class="form-control" name="title" id="title"
-                onkeyup="recommendTitle(this.value, '{{ csrf_token }}')" placeholder="제목을 입력하세요" value="{{title}}">
-            </div>
-
-            <div class="ai_box">
-              <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;실시간 단어 추천</h1>
-              <p class="ai_summarize">다음 단어를 추천해드립니다.</p>
-              <br>
-              <input type="button" id="result1" class="btn btn-default"
-                onclick="addTitle(this.value, '{{ csrf_token }}')" value="">
-              <input type="button" id="result2" class="btn btn-default"
-                onclick="addTitle(this.value, '{{ csrf_token }}')" value="">
-              <input type="button" id="result3" class="btn btn-default"
-                onclick="addTitle(this.value, '{{ csrf_token }}')" value="">
-              <input type="button" id="result4" class="btn btn-default"
-                onclick="addTitle(this.value, '{{ csrf_token }}')" value="">
-              <input type="button" id="result5" class="btn btn-default"
-                onclick="addTitle(this.value, '{{ csrf_token }}')" value="">
-            </div>
+          <div class="ai_box">
+            <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;실시간 단어 추천</h1>
+            <p class="ai_summarize">다음 단어를 추천해드립니다.</p>
             <br>
-            <br>
+            <input type="button" id="result1" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')"
+              value="">
+            <input type="button" id="result2" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')"
+              value="">
+            <input type="button" id="result3" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')"
+              value="">
+            <input type="button" id="result4" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')"
+              value="">
+            <input type="button" id="result5" class="btn btn-default" onclick="addTitle(this.value, '{{ csrf_token }}')"
+              value="">
+          </div>
+          <br>
+          <br>
 
-            <div class="form-group">
-              <label class="writing_title" for="content">두 문장 추가하기</label>
-              <textarea class="form-control" rows="3" name="content" id="content"
-                placeholder="몇개의 단어를 입력하세요. 완성된 글에 생성됩니다. ">{{content}}</textarea>
-            </div>
+          <div class="form-group">
+            <label class="writing_title" for="content">두 문장 추가하기</label>
+            <textarea class="form-control" rows="3" name="content" id="content"
+              placeholder="몇개의 단어를 입력하세요. 완성된 글에 생성됩니다. ">{{content}}</textarea>
+          </div>
 
-            <div class=" text-center">
-              <input type="submit" class="btn btn-info" value="두 문장 추가하기">
-            </div>
-            <div class="form-group">
-              <label class="writing_title" for="fin_content">완성된 글</label>
-              <textarea class="form-control" rows="10" name="text" id="fin_content"
-                placeholder="글이 자동으로 완성됩니다">{{text}}</textarea>
-            </div>
-            <br>
+          <div class=" text-center">
+            <input type="submit" class="btn btn-info" value="두 문장 추가하기">
+          </div>
+          <div class="form-group">
+            <label class="writing_title" for="fin_content">완성된 글</label>
+            <textarea class="form-control" rows="10" name="text" id="fin_content"
+              placeholder="글이 자동으로 완성됩니다">{{text}}</textarea>
+          </div>
+          <br>
 
-            <!-- 
+          <!-- 
           <div class="filebox">
             <label class="writing_title" for="File" onchange="setThumbnail(event);">이미지 첨부하기</label>
             <input type="file" id="File">
           </div> -->
 
-            <div class="ai_box">
-              <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
-              <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
-              {% for link in links %}
-              <button type="button" class="btn btn-primary navbar-btn"
-            onclick="location.href='{% url 'sg:writing' %}'">이미지 추천받기</button>
-              <input class="findimg" type="image" id="findimg{{ forloop.counter }}" onclick="mark(this)"
-                src="{{ link }}" alt="사진">
-              {% endfor %}
-              <br>
-              <!-- <div class="filebox">
+          <div class="ai_box">
+            <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
+            <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
+            {% for link in links %}
+            <input class="findimg" type="image" id="findimg{{ forloop.counter }}" onclick="mark(this)" src="{{ link }}"
+              alt="사진">
+            {% endfor %}
+            <div class="text-center">
+              <input type="submit" class="btn btn-primary navbar-btn" value="이미지 추천받기"
+                formaction="{% url 'sg:writing' %}?type=image">
+            </div>
+            <br>
+            <!-- <div class="filebox">
                 <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
                 <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" />
                 <div id="image_container"></div>
               </div> -->
 
-            </div>
+          </div>
 
-            <br>
-            <br>
-            <br>
-            <div class="text-center">
-              <input type="submit" class="btn btn-primary btn-lg" value="업로드" formaction="{% url 'sg:save' %}">
-            </div>
-          </form>
+          <br>
+          <br>
+          <br>
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary btn-lg" value="업로드" formaction="{% url 'sg:save' %}">
+          </div>
+        </form>
 
-        </div>
       </div>
-
     </div>
+
+  </div>
   </div>
 </body>
 
