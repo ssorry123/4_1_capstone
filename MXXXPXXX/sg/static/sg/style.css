@@ -213,7 +213,7 @@ ul li {
   padding-left: 5px;
 }
 
-.ccheck input[type="checkbox"] {
+.ccheck input[type="radio"] {
 	display:none;
 }
 
@@ -222,7 +222,7 @@ ul li {
 	height:20px;
 }
 
-.ccheck input[type="checkbox"] + label .chk_img {
+.ccheck input[type="radio"] + label .chk_img {
   padding:0 0 0 5px;
   font-size: 18px;
   color: #0f4c81;
@@ -234,7 +234,7 @@ ul li {
   cursor:pointer;
   filter: contrast(120%)
 }
-.ccheck input[type="checkbox"]:checked + label .chk_img {
+.ccheck input[type="radio"]:checked + label .chk_img {
   border: 2px solid #dd1e2f;
   background-size: 100%;
   filter: contrast(100%)
@@ -382,6 +382,9 @@ ul li {
   border-radius: .25em; 
 }
 
+.cat_radio {
+  padding-left: 15px;
+}
 /* 6. 뉴스 디테일 */
 
 .detail_title {
