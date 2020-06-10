@@ -31,11 +31,13 @@ def index(request):
 
 # POST인경우 받아온 데이터를 처리하고 HTML에 넘겨줌
 def writing(request):
+    category = ['정치', '사회', 'IT/과학', '문화/예술']
     if request.method == "POST":
         # HTML에서 값 받아오는 법
         title = request.POST['title']
         content = request.POST['content']
         text = request.POST['text']
+        checked = request.POST['category']
         links = ''
         # 문장 생성 함수
 
@@ -53,6 +55,8 @@ def writing(request):
             'content': '',
             'text': text,
             'links': links,
+            'checked': checked,
+            'category': category,
         }
 
     else:
@@ -61,6 +65,8 @@ def writing(request):
             'content': '',
             'text': '',
             'links': '',
+            'checked': '',
+            'category': category,
         }
 
     return render(request, 'sg/writing.html', ctx)
@@ -73,6 +79,8 @@ def save(request):
         if form.is_valid():
             form.save()
             return redirect('sg:index')
+        else:
+            return HttpResponse(form.errors)
     return redirect('sg:writing')
 
 

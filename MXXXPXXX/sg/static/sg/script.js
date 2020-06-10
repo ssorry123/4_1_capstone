@@ -51,6 +51,7 @@ function addTitle(val, csrf_token) {
 
 //이미지 클릭시 자동 넣기
 
-function mark(img) {
-  img.style.border = "1px solid blue";
-}
+// function mark(img) {
+//   document.getElementById('photo').value = img.src;
+//   img.style.border = "1px solid red";
+// }
