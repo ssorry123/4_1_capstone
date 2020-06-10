@@ -40,4 +40,4 @@ class Writing(models.Model):
         return self.title
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['-pub_date']
