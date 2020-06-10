@@ -130,7 +130,8 @@
             </div>
             <div class="col-xs-6 no_pad">
               <ul>
-                <li class="cat_headline_title"><a href="#">{{ articles.0.title}}</a></li>
+                <li class="cat_headline_title"><a href="{% url 'sg:detail' articles.0.id %}">{{ articles.0.title}}</a>
+                </li>
                 <li class="cat_headline_text">{{ articles.0.text }}</li>
                 <li class="cat_author">{{ articles.0.writer }}</li>
               </ul>
