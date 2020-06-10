@@ -16,8 +16,8 @@ $pip3 install -r requirements.txt
 - 링크2: <https://andamiro25.tistory.com/193>
 - 이유: 오픈소스 프로젝트에 많이 사용하는 방식 -> 익숙해지기 위해서
 
-### 웹 디자인
+<!-- ### 웹 디자인
 - 작업자: 석진, 재희
 - 작업툴: Figma
 - 링크: <https://www.figma.com/file/vuscEaWcaQRthBQHBYqJbg/Mine-Post?node-id=0%3A1> (편집 불가)
-
+ -->
