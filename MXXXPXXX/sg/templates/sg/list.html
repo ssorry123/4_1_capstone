@@ -124,10 +124,9 @@
             </div>
             <div class="col-xs-10 no_pad">
               <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
+                <li class="cat_normal_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
+                <li class="cat_normal_text">{{ article.text }}</li>
+                <li class="cat_author">{{ article.writer }}</li>
               </ul>
             </div>
           </div>

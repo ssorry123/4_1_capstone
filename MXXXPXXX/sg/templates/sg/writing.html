@@ -107,28 +107,28 @@
 
           <div class="form-group writing_model">
             <div class="ccheck">
-              <input type="radio" id="check_test1" name="radio_btn">
+              <input type="radio" id="check_test1" name="model">
               <label for="check_test1">
                 <div class="chk_img mm_1">뉴스</div>
               </label>
             </div>
 
             <div class="ccheck">
-              <input type="radio" id="check_test2" name="radio_btn">
+              <input type="radio" id="check_test2" name="model">
               <label for="check_test2">
                 <div class="chk_img mm_2">소설</div>
               </label>
             </div>
 
             <div class="ccheck">
-              <input type="radio" id="check_test3" name="radio_btn">
+              <input type="radio" id="check_test3" name="model">
               <label for="check_test3">
                 <div class="chk_img mm_3">SNS</div>
               </label>
             </div>
 
             <div class="ccheck">
-              <input type="radio" id="check_test4" name="radio_btn">
+              <input type="radio" id="check_test4" name="model">
               <label for="check_test4">
                 <div class="chk_img mm_4">버스커<br>버스커</div>
               </label>
@@ -146,22 +146,25 @@
 
         <br>
 
-        <div class="form-group">
-          <label class="writing_title" for="content">카테고리</label>
+        <form action="" method="POST">
+          <div class="form-group">
+            <label class="writing_title" for="content">카테고리</label>
 
-          <form class="form-horizontal" role="form">
             <div class="form-group cat_radio">
               <div>
-                <label class="radio-inline"> <input type="radio" name="cat" id="cat_poli" value="cat_poli">정치</label>
-                <label class="radio-inline"> <input type="radio" name="cat" id="cat_soci" value="cat_soci">사회</label>
-                <label class="radio-inline"> <input type="radio" name="cat" id="cat_it" value="cat_it">IT/과학</label>
-                <label class="radio-inline"> <input type="radio" name="cat" id="cat_cult" value="cat_cult">문화/예술</label>
+                <label class="radio-inline"> <input type="radio" name="category" id="cat_poli"
+                    value="cat_poli">정치</label>
+                <label class="radio-inline"> <input type="radio" name="category" id="cat_soci"
+                    value="cat_soci">사회</label>
+                <label class="radio-inline"> <input type="radio" name="category" id="cat_it"
+                    value="cat_it">IT/과학</label>
+                <label class="radio-inline"> <input type="radio" name="category" id="cat_cult"
+                    value="cat_cult">문화/예술</label>
               </div>
             </div>
 
-        </div>
+          </div>
 
-        <form action="" method="POST">
           <input type="hidden" name="writer" value="{{user.userid}}">
           <div class="form-group">
             <label class="writing_title" for="title">제목</label>
