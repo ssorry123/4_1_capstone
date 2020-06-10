@@ -1,6 +1,6 @@
 #version 2020_05_16(1)
 #version 2020_05_17(2)
-print('sw_gpt_function.py loading')
+print('server loading...')
 '''
     1. 기본 package
 '''
@@ -15,11 +15,11 @@ import re
     2. KoGPT2 package
 '''
 
+#from gptko.kogpt2.utils import get_tokenizer
+#from gptko.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+
 from kogpt2.utils import get_tokenizer
 from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
-
-#from kogpt2.utils import get_tokenizer
-#from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 '''
 3. 함수에서 사용할 전역변수 tok_path, tok, model, vocab
 '''
@@ -96,6 +96,7 @@ def context_words_list(pred):
         b = sort[cnt + 1][i].squeeze().tolist()
         h = _pred[0][cnt + 1][b].squeeze().tolist()  # 확률 야매
         gen = vocab.to_tokens([b])  # 하나의 추천 단어
+        gen[0] = gen[0].replace('▁', ' ')
         ret.append([gen, round(h / 2, 2)])
 
     return ret
@@ -119,6 +120,7 @@ def context_words_list2(words):
         b = sort[cnt + 1][i].squeeze().tolist()
         h = _pred[0][cnt + 1][b].squeeze().tolist()  # 확률 야매
         gen = vocab.to_tokens([b])  # 하나의 추천 단어
+        gen[0] = gen[0].replace('▁', ' ')
         ret.append([gen, round(h / 2, 2)])
 
     return ret
