@@ -40,10 +40,10 @@ def writing(request):
         checked = request.POST['category']
         links = ''
         # 문장 생성 함수
-
-        gen = serveral_sentence_generate(content)
-        for i in range(len(gen)):
-            text = text + gen[i]
+        if request.GET.get('type') == 'text':
+            gen = serveral_sentence_generate(content)
+            for i in range(len(gen)):
+                text = text + gen[i]
         if request.GET.get('type') == 'image':
             if title == '':
                 return redirect('sg:writing')
