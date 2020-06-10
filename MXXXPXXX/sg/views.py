@@ -9,6 +9,7 @@ import json
 from .models import Writing
 from .forms import UserForm, ArticleForm
 from .sw_gpt_function import *
+from .google_crawling_20026 import collect_links
 
 
 # 단순히 HTML만 띄우는 코드
@@ -30,13 +31,14 @@ def writing(request):
         for i in range(len(gen)):
             text = text + gen[i]
 
-        # gen = one_sentence_generate(content)
-        # text += gen
+        collect = collect_links.CollectLinks()
+        links = collect.google_full(title)
 
         ctx = {
             'title': title,
             'content': '',
             'text': text,
+            'links': links,
         }
 
     else:
@@ -44,6 +46,7 @@ def writing(request):
             'title': '',
             'content': '',
             'text': '',
+            'links': '',
         }
 
     return render(request, 'sg/writing.html', ctx)
@@ -91,6 +94,11 @@ def login(request):
         return render(request, 'sg/login.html')
 
 
+def logout(request):
+    auth.logout(request)
+    return redirect('sg:index')
+
+
 def recommend_words(request):
     if request.method == "POST":
         content = request.POST["content"]
@@ -106,3 +114,29 @@ def recommend_words(request):
 
 def detail(request):
     return render(request, 'sg/news_detail.html')
+
+
+def crawling_images(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        if title == '':
+            return redirect('sg:writing')
+        collect = collect_links.CollectLinks()
+        links = collect.google_full(title)
+        context = {
+            'links': links,
+        }
+        return render(request, 'sg/writing.html', context)
+    else:
+        return redirect('sg:writing')
+
+
+def list(request):
+    # 해당 카테고리인 최신글 10개 디비에서 가져오기
+    cat = request.GET.get('cat')
+    articles = Writing.objects.filter(category=cat)
+    context = {
+        'cat': cat,
+        'articles': articles,
+    }
+    return render(request, 'sg/list.html', context)

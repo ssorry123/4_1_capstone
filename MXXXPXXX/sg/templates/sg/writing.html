@@ -45,8 +45,14 @@
             </div>
             <button type="submit" class="btn btn-primary">검색</button>
           </form>
+          {% if user.is_authenticated %}
+          <!-- 로그인한 경우 -->
+          <button type="button" class="btn btn-primary navbar-btn"
+            onclick="location.href='{% url 'sg:logout' %}'">로그아웃</button>
+          {% else %}
           <button type="button" class="btn btn-primary navbar-btn"
             onclick="location.href='{% url 'sg:login' %}'">로그인</button>
+          {% endif %}
           <button type="button" class="btn btn-primary navbar-btn"
             onclick="location.href='{% url 'sg:signup' %}'">회원가입</button>
         </ul>
@@ -61,17 +67,19 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">정치
+            <a href="{% url 'sg:list' %}?cat=정치" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
+              aria-expanded="false">정치
               <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">청와대</a></li>
+              <li><a href="cat_cjddhkeo">청와대</a></li>
               <li><a href="#">북한</a></li>
               <li><a href="#">국회/정당</a></li>
               <li><a href="#">행정</a></li>
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button" aria-expanded="false">사회
+            <a href="{% url 'sg:list' %}?cat=사회" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
+              aria-expanded="false">사회
               <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">사건사고</a></li>
@@ -81,8 +89,8 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
-              aria-expanded="false">IT/과학 <span class="caret"></span></a>
+            <a href="{% url 'sg:list' %}?cat=IT/과학" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
+              role="button" aria-expanded="false">IT/과학 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">통신</a></li>
               <li><a href="#">모바일</a></li>
@@ -91,8 +99,8 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
-              aria-expanded="false">문화/예술 <span class="caret"></span></a>
+            <a href="{% url 'sg:list' %}?cat=문화/예술" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
+              role="button" aria-expanded="false">문화/예술 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">여행/레저</a></li>
               <li><a href="#">패션/뷰티</a></li>
@@ -231,20 +239,11 @@
             <div class="ai_box">
               <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
               <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
-              <input class="findimg" type="image" id="findimg1" onclick="mark(this)"
-                src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg2" onclick="mark(this)"
-                src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg3" onclick="mark(this)"
-                src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg4" onclick="mark(this)"
-                src="https://dimg.donga.com/wps/NEWS/IMAGE/2020/03/13/100139532.2.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg5" onclick="mark(this)"
-                src="https://ichef.bbci.co.uk/news/410/cpsprodpb/DB93/production/_111011265_origin_.jpg" alt="사진">
-              <input class="findimg" type="image" id="findimg6" onclick="mark(this)"
-                src="https://news.kbs.co.kr/data/news/2020/01/24/4368695_ZQU.jpg" alt="사진">
+              {% for link in links %}
+              <input class="findimg" type="image" id="findimg{{ forloop.counter }}" onclick="mark(this)"
+                src="{{ link }}" alt="사진">
+              {% endfor %}
               <br>
-
               <!-- <div class="filebox">
                 <label class="writing_title" for="image" onchange="setThumbnail(event);">이미지 첨부하기</label>
                 <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" />
