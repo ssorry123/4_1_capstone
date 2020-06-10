@@ -144,7 +144,8 @@ def list(request):
     hot_article = ''
     if page == 1:
         hot_article = Writing.objects.filter(category=cat)[0]
-    article_range = range(1 + 10 * (page - 1), 1 + 10 * page)
+    last_page = Writing.objects.filter(category=cat).count() // 10 + 1
+    article_range = range(1, last_page + 1)
     articles = Writing.objects.filter(category=cat)[1 + 10 * (page - 1):1 +
                                                     10 * page]
     context = {
@@ -154,5 +155,6 @@ def list(request):
         'page': page,
         'hot_article': hot_article,
         'headline': headline,
+        'last_page': last_page,
     }
     return render(request, 'sg/list.html', context)

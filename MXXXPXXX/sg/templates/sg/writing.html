@@ -217,8 +217,7 @@
             <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
             <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
             {% for link in links %}
-            <input class="findimg" type="image" id="findimg{{ forloop.counter }}" onclick="mark(this)" src="{{ link }}"
-              alt="사진">
+            <img class="findimg" id="findimg{{ forloop.counter }}" onclick="mark(this)" src="{{ link }}" alt="사진">
             {% endfor %}
             <div class="text-center">
               <input type="submit" class="btn btn-info navbar-btn" value="이미지 추천받기"

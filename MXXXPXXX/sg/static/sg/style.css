@@ -241,20 +241,20 @@ ul li {
 }
 
 .mm_1 {
-  background:url("../../static/sg/images/news.png")no-repeat;
+  background:url("/static/sg/images/news.png")no-repeat;
 }
 
 .mm_2 {
-  background:url("../../static/sg/images/author.png")no-repeat;
+  background:url("/static/sg/images/author.png")no-repeat;
 }
 .mm_3 {
-  background:url("../../static/sg/images/sns.png")no-repeat;
+  background:url("/static/sg/images/sns.png")no-repeat;
 }
 .mm_4 {
-  background:url("../../static/sg/images/busker.png")no-repeat;
+  background:url("/static/sg/images/busker.png")no-repeat;
 }
 .mm_5 {
-  background:url("../../static/sg/images/logo_image.png")no-repeat;
+  background:url("/static/sg/images/logo_image.png")no-repeat;
 }
 
 /* 3. 카테고리 */

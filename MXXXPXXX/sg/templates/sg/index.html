@@ -104,7 +104,7 @@
             </div>
             <div class="col-xs-8">
               <ul class="ul_margin">
-                {% for article in headline %}
+                {% for article in headline|slice:":5" %}
                 <li class="main_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
                 {% endfor %}
               </ul>
