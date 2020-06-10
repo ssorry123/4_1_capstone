@@ -14,7 +14,7 @@ from .google_crawling_20026 import collect_links
 
 # 단순히 HTML만 띄우는 코드
 def index(request):
-    headline = Writing.objects.all()[:5]
+    headline = Writing.objects.all()[:10]
     poli = Writing.objects.filter(category='정치')[:5]
     it = Writing.objects.filter(category='IT/과학')[:5]
     culture = Writing.objects.filter(category='문화/예술')[:5]
@@ -128,18 +128,31 @@ def recommend_words(request):
 
 def detail(request, pk):
     article = Writing.objects.get(id=pk)
+    headline = Writing.objects.all()[:10]
     context = {
         'article': article,
+        'headline': headline,
     }
     return render(request, 'sg/news_detail.html', context)
 
 
 def list(request):
     # 해당 카테고리인 최신글 10개 디비에서 가져오기
+    headline = Writing.objects.all()[:10]
     cat = request.GET.get('cat')
-    articles = Writing.objects.filter(category=cat)
+    page = int(request.GET.get('page'))
+    hot_article = ''
+    if page == 1:
+        hot_article = Writing.objects.filter(category=cat)[0]
+    article_range = range(1 + 10 * (page - 1), 1 + 10 * page)
+    articles = Writing.objects.filter(category=cat)[1 + 10 * (page - 1):1 +
+                                                    10 * page]
     context = {
         'cat': cat,
         'articles': articles,
+        'range': article_range,
+        'page': page,
+        'hot_article': hot_article,
+        'headline': headline,
     }
     return render(request, 'sg/list.html', context)

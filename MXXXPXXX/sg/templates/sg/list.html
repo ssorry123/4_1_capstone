@@ -64,8 +64,8 @@
       <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="{% url 'sg:list' %}?cat=정치" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
-              aria-expanded="false">정치</a>
+            <a href="{% url 'sg:list' %}?cat=정치&page=1" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
+              role="button" aria-expanded="false">정치</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">청와대</a></li>
               <li><a href="#">북한</a></li>
@@ -74,8 +74,8 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="{% url 'sg:list' %}?cat=사회" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
-              aria-expanded="false">사회</a>
+            <a href="{% url 'sg:list' %}?cat=사회&page=1" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
+              role="button" aria-expanded="false">사회</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">사건사고</a></li>
               <li><a href="#">지역</a></li>
@@ -84,7 +84,7 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="{% url 'sg:list' %}?cat=IT/과학" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
+            <a href="{% url 'sg:list' %}?cat=IT/과학&page=1" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
               role="button" aria-expanded="false">IT/과학</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">통신</a></li>
@@ -94,7 +94,7 @@
             </ul>
           </li>
           <li class="dropdown">
-            <a href="{% url 'sg:list' %}?cat=문화/예술" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
+            <a href="{% url 'sg:list' %}?cat=문화/예술&page=1" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
               role="button" aria-expanded="false">문화/예술</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">여행/레저</a></li>
@@ -123,24 +123,27 @@
         </div>
         <div class="col-xs-10 left_line">
 
+          {% if hot_article %}
           <div class="col-xs-12 cat_bot_line no_pad">
             <h1 class="head_title">{{ cat }} 핫이슈</h1>
             <div class="col-xs-6">
-              <img class="cat_headline_img" alt="Headline_img" src="{{ articles.0.photo }}">
+              <img class="cat_headline_img" alt="Headline_img" src="{{ hot_article.photo }}">
             </div>
             <div class="col-xs-6 no_pad">
               <ul>
-                <li class="cat_headline_title"><a href="{% url 'sg:detail' articles.0.id %}">{{ articles.0.title}}</a>
+                <li class="cat_headline_title"><a href="{% url 'sg:detail' hot_article.id %}">{{ hot_article.title}}</a>
                 </li>
-                <li class="cat_headline_text">{{ articles.0.text }}</li>
-                <li class="cat_author">{{ articles.0.writer }}</li>
+                <li class="cat_headline_text">{{ hot_article.text }}</li>
+                <li class="cat_author">{{ hot_article.writer }}</li>
               </ul>
             </div>
           </div>
+          {% endif %}
 
+          {% for article in articles %}
           <div class="col-xs-12 cat_bot_line no_pad">
             <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
+              <img class="cat_normal_img" alt="Headline_img" src="{{ article.photo }}">
             </div>
             <div class="col-xs-10 no_pad">
               <ul>
@@ -151,132 +154,7 @@
               </ul>
             </div>
           </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xs-12 cat_bot_line no_pad">
-            <div class="col-xs-2">
-              <img class="cat_normal_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
-            </div>
-            <div class="col-xs-10 no_pad">
-              <ul>
-                <li class="cat_normal_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="cat_normal_text">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제
-                  발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. 등 떠밀려 기부할 판” 눈치 보이는 재난지원금 첫 문제 발생했다고 한다. </li>
-                <li class="cat_author">소석진</li>
-              </ul>
-            </div>
-          </div>
+          {% endfor %}
 
           <nav class="text-center">
             <ul class="pagination">
@@ -308,36 +186,11 @@
           </ul>
         </div> -->
         <ul class="nav">
-          <a href="#">
-            <li class="rank_text">1. 민경욱이 흔든 투표용지 6장은 진짜"... 선관위</li>
+          {% for article in headline %}
+          <a href="{% url 'sg:detail' article.id %}">
+            <li class="rank_text">{{ forloop.counter }}. {{ article.title }}</li>
           </a>
-          <a href="#">
-            <li class="rank_text">2. 선관위 "구리서 투표용지 유출…민경욱은 입수</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">3. 선관위, 경기 구리서 투표용지 유출 확인…대검에 수</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">4. 민경욱이 흔든 투표용지 6장은 진짜"... 선관위</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">5. 웜비어家의 집념… 김정은, 유태인 인맥 잘못 건드렸다</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">6. 선관위, 경기 구리서 투표용지 유출 확인…대검에 수</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">7. 문희상에 편지 쓴 할머니 "내 핏값인데, 정대협이 왜 막느냐"</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">8. 코로나 발병 위험</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">9. 선관위, 경기 구리서 투표용지 유출 확인…대검에 수</li>
-          </a>
-          <a href="#">
-            <li class="rank_text">10. 민경욱이 흔든 투표용지 6장은 진짜"... 선관위</li>
-          </a>
+          {% endfor %}
         </ul>
       </div>
     </div>
