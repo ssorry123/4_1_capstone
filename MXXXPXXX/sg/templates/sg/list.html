@@ -105,7 +105,9 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
           <li><a href="{% url 'sg:writing' %}" class="mid_cat2">글쓰기 놀이터</a></li>
+          {% endif %}
           <li><a href="#" class="mid_cat2">GPT-2 체험</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -296,16 +298,15 @@
 
       <div class="col-xs-3">
         <h1 class="rank_title bot_line">투데이 랭킹</h1>
-        <div class="row">
+        <!-- <div class="row">
           <ul class="nav navbar-nav">
             <li class="rank_padding">정치</li>
             <li class="rank_padding">사회</li>
             <li class="rank_padding">IT/과학</li>
             <li class="rank_padding">문화/예술</li>
           </ul>
-        </div>
-        <ul class="nav top_line">
-          <br>
+        </div> -->
+        <ul class="nav">
           <a href="#">
             <li class="rank_text">1. 민경욱이 흔든 투표용지 6장은 진짜"... 선관위</li>
           </a>

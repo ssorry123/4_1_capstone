@@ -14,7 +14,19 @@ from .google_crawling_20026 import collect_links
 
 # 단순히 HTML만 띄우는 코드
 def index(request):
-    return render(request, 'sg/index.html')
+    headline = Writing.objects.all()[:5]
+    poli = Writing.objects.filter(category='정치')[:5]
+    it = Writing.objects.filter(category='IT/과학')[:5]
+    culture = Writing.objects.filter(category='문화/예술')[:5]
+    social = Writing.objects.filter(category='사회')[:5]
+    context = {
+        'headline': headline,
+        'poli': poli,
+        'it': it,
+        'culture': culture,
+        'social': social,
+    }
+    return render(request, 'sg/index.html', context)
 
 
 # POST인경우 받아온 데이터를 처리하고 HTML에 넘겨줌
@@ -112,8 +124,12 @@ def recommend_words(request):
         return HttpResponse(json.dumps(ctx), content_type="application/json")
 
 
-def detail(request):
-    return render(request, 'sg/news_detail.html')
+def detail(request, pk):
+    article = Writing.objects.get(id=pk)
+    context = {
+        'article': article,
+    }
+    return render(request, 'sg/news_detail.html', context)
 
 
 def crawling_images(request):

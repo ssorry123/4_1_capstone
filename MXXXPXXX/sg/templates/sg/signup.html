@@ -106,7 +106,9 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
           <li><a href="{% url 'sg:writing' %}" class="mid_cat2">글쓰기 놀이터</a></li>
+          {% endif %}
           <li><a href="#" class="mid_cat2">GPT-2 체험</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->

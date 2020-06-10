@@ -43,6 +43,8 @@
           </form>
           {% if user.is_authenticated %}
           <!-- 로그인한 경우 -->
+          <button type="button" class="btn btn-success navbar-btn"
+            onclick="location.href='{% url 'sg:writing' %}'">글쓰기</button>
           <button type="button" class="btn btn-primary navbar-btn"
             onclick="location.href='{% url 'sg:logout' %}'">로그아웃</button>
           {% else %}
@@ -64,10 +66,9 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="{% url 'sg:list' %}?cat=정치" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
-              aria-expanded="false">정치
-              <span class="caret"></span></a>
+              aria-expanded="false">정치</a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="cat_cjddhkeo">청와대</a></li>
+              <li><a href="#">청와대</a></li>
               <li><a href="#">북한</a></li>
               <li><a href="#">국회/정당</a></li>
               <li><a href="#">행정</a></li>
@@ -75,8 +76,7 @@
           </li>
           <li class="dropdown">
             <a href="{% url 'sg:list' %}?cat=사회" class="dropdown-toggle mid_cat1" data-toggle="dropdown" role="button"
-              aria-expanded="false">사회
-              <span class="caret"></span></a>
+              aria-expanded="false">사회</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">사건사고</a></li>
               <li><a href="#">지역</a></li>
@@ -86,7 +86,7 @@
           </li>
           <li class="dropdown">
             <a href="{% url 'sg:list' %}?cat=IT/과학" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
-              role="button" aria-expanded="false">IT/과학 <span class="caret"></span></a>
+              role="button" aria-expanded="false">IT/과학</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">통신</a></li>
               <li><a href="#">모바일</a></li>
@@ -96,7 +96,7 @@
           </li>
           <li class="dropdown">
             <a href="{% url 'sg:list' %}?cat=문화/예술" class="dropdown-toggle mid_cat1" data-toggle="dropdown"
-              role="button" aria-expanded="false">문화/예술 <span class="caret"></span></a>
+              role="button" aria-expanded="false">문화/예술</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="#">여행/레저</a></li>
               <li><a href="#">패션/뷰티</a></li>
@@ -106,8 +106,15 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
+          {% if user.is_authenticated %}
           <li><a href="{% url 'sg:writing' %}" class="mid_cat2">글쓰기 놀이터</a></li>
+          {% endif %}
           <li><a href="#" class="mid_cat2">GPT-2 체험</a></li>
+=======
+          <!-- <li><a href="{% url 'sg:writing' %}" class="mid_cat2">글쓰기 놀이터</a></li>
+          <li><a href="#" class="mid_cat2">GPT-2 체험</a></li> -->
+>>>>>>> 2986e0a4eb5ec5a88cfaec55ab803fc6e8db9245
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
@@ -121,15 +128,13 @@
           <h1 class="head_title">헤드라인 뉴스</h1>
           <div class="row">
             <div class="col-xs-4">
-              <img class="thumbnail_img headline_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
+              <img class="thumbnail_img headline_img" alt="Headline_img" src="{{ headline.0.photo }}">
             </div>
             <div class="col-xs-8">
               <ul class="ul_margin">
-                <li class="main_title"><a href="#">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해지는 바이다.</a></li>
-                <li class="main_title">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금… 첫 문제 발생했다고 한다.</li>
-                <li class="main_title">"커밍아웃도 만남도 두려워요"...혐오대상 된 성 소수자들</li>
-                <li class="main_title">윤미향, '조국' 소환하고 '친일 프레임'까지 꺼냈다</li>
-                <li class="main_title">고3 학생, 이태원 클럽 다녀와 '음성'...전수조사 진행중</li>
+                {% for article in headline %}
+                <li class="main_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -138,15 +143,13 @@
           <h1 class="title">정치</h1>
           <div class="row">
             <div class="col-xs-3">
-              <img class="thumbnail_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
+              <img class="thumbnail_img" alt="Headline_img" src="{{ poli.0.photo }}">
             </div>
             <div class="col-xs-9">
               <ul class="ul_margin">
-                <li class="sub_title">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해진다고 한다</li>
-                <li class="sub_title">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금… 첫 지급 한다고 한다</li>
-                <li class="sub_title">"커밍아웃도 만남도 두려워요"...혐오대상 된 성 소수자</li>
-                <li class="sub_title">윤미향, '조국' 소환하고 '친일 프레임'까지 꺼냈다</li>
-                <li class="sub_title">고3 학생, 이태원 클럽 다녀와 '음성'...전수조사 진행</li>
+                {% for article in poli %}
+                <li class="sub_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -155,15 +158,13 @@
           <h1 class="title">사회</h1>
           <div class="row">
             <div class="col-xs-3">
-              <img class="thumbnail_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
+              <img class="thumbnail_img" alt="Headline_img" src="{{ social.0.photo }}">
             </div>
             <div class="col-xs-9">
               <ul class="ul_margin">
-                <li class="sub_title">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해진다고 한다</li>
-                <li class="sub_title">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금… 첫 지급 한다고 한다</li>
-                <li class="sub_title">"커밍아웃도 만남도 두려워요"...혐오대상 된 성 소수자</li>
-                <li class="sub_title">윤미향, '조국' 소환하고 '친일 프레임'까지 꺼냈다</li>
-                <li class="sub_title">고3 학생, 이태원 클럽 다녀와 '음성'...전수조사 진행</li>
+                {% for article in social %}
+                <li class="sub_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -172,15 +173,13 @@
           <h1 class="title">IT/과학</h1>
           <div class="row">
             <div class="col-xs-3">
-              <img class="thumbnail_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
+              <img class="thumbnail_img" alt="Headline_img" src="{{ it.0.photo }}">
             </div>
             <div class="col-xs-9">
               <ul class="ul_margin">
-                <li class="sub_title">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해진다고 한다</li>
-                <li class="sub_title">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금… 첫 지급 한다고 한다</li>
-                <li class="sub_title">"커밍아웃도 만남도 두려워요"...혐오대상 된 성 소수자</li>
-                <li class="sub_title">윤미향, '조국' 소환하고 '친일 프레임'까지 꺼냈다</li>
-                <li class="sub_title">고3 학생, 이태원 클럽 다녀와 '음성'...전수조사 진행</li>
+                {% for article in it %}
+                <li class="sub_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -189,15 +188,13 @@
           <h1 class="title">문화/예술</h1>
           <div class="row">
             <div class="col-xs-3">
-              <img class="thumbnail_img" alt="Headline_img" src="../../static/sg/images/thumbnail.jpg">
+              <img class="thumbnail_img" alt="Headline_img" src="{{ culture.0.photo }}">
             </div>
             <div class="col-xs-9">
               <ul class="ul_margin">
-                <li class="sub_title">트럼프, 중국계 기자에게 막말 논란이 발생했다고 한다고 전해진다고 한다</li>
-                <li class="sub_title">“등 떠밀려 기부할 판” 눈치 보이는 재난지원금… 첫 지급 한다고 한다</li>
-                <li class="sub_title">"커밍아웃도 만남도 두려워요"...혐오대상 된 성 소수자</li>
-                <li class="sub_title">윤미향, '조국' 소환하고 '친일 프레임'까지 꺼냈다</li>
-                <li class="sub_title">고3 학생, 이태원 클럽 다녀와 '음성'...전수조사 진행</li>
+                {% for article in culture %}
+                <li class="sub_title"><a href="{% url 'sg:detail' article.id %}">{{ article.title }}</a></li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -205,16 +202,15 @@
       </div>
       <div class="col-xs-3">
         <h1 class="rank_title bot_line">투데이 랭킹</h1>
-        <div class="row">
+        <!-- <div class="row">
           <ul class="nav navbar-nav">
             <li class="rank_padding">정치</li>
             <li class="rank_padding">사회</li>
             <li class="rank_padding">IT/과학</li>
             <li class="rank_padding">문화/예술</li>
           </ul>
-        </div>
-        <ul class="nav top_line">
-          <br>
+        </div> -->
+        <ul class="nav">
           <a href="#">
             <li class="rank_text">1. 민경욱이 흔든 투표용지 6장은 진짜"... 선관위</li>
           </a>
