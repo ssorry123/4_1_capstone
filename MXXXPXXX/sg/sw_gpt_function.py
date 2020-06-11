@@ -29,7 +29,7 @@ from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 # @@@views.py에 import 하면 이 파일은 서버 실행 될때 실행된다.@@@
 # (app내부가 아닌 py 파일은 서버 실행시 모두 실행되지 않음)
 tok_path = get_tokenizer()
-tok = SentencepieceTokenizer(tok_path)
+tok = SentencepieceTokenizer(tok_path, 0, 0)
 
 # 1) model, vocab 파일의 경우 setup.py 실행시
 # kogpt2가 파이썬 내장 모듈로 설정되어 파이썬 설치 경로에 존재
@@ -162,7 +162,7 @@ def step_by_step_generate():
 # 두개 이상의 문장을 생성
 # return은 str의 리스트
 # 추천 단어 사용 불가
-def serveral_sentence_generate(sent='일본은', generate_num=2):
+def serveral_sentence_generate(sent='일본은', generate_num=5):
     #sent = input('입력 : ')
     ret_list = list()
     toked = tok(sent)
@@ -174,15 +174,19 @@ def serveral_sentence_generate(sent='일본은', generate_num=2):
     # num_return_sequences 생성할 문장 개수
 
     outputs = model.generate(input_ids=input_ids,
-                             max_length=50,
-                             repetition_penalty=1.2,
+                             max_length=300,min_length=200,
+                             repetition_penalty=1.0,
                              do_sample=True,
-                             num_return_sequences=generate_num)
+                             num_return_sequences=generate_num,
+                             eos_token_id=0, pad_token_id=3
+                            )
 
     for i in range(generate_num):
-        toked = vocab.to_tokens(outputs[0][i].squeeze().tolist())
+        toked = vocab.to_tokens(outputs[i].squeeze().tolist())
         ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁',
                                                                ' ').strip())
+        ret=ret.replace('<pad>', '')
+        ret += '\n\n'
         ret_list.append(ret)
 
     return ret_list
@@ -192,6 +196,7 @@ def serveral_sentence_generate(sent='일본은', generate_num=2):
 # option 설정 do_sample=False -> 항상 같은 문장 만듬
 # 여러 문장 만들어내는 함수와 toked 부분이 다름
 # 추천 단어 사용 불가
+'''
 def one_sentence_generate(sent='한국은', do_sample=True):
     #sent = input('입력 : ')
 
@@ -212,3 +217,4 @@ def one_sentence_generate(sent='한국은', do_sample=True):
     ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁', ' ').strip())
 
     return ret
+'''
