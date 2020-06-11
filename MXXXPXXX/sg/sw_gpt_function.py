@@ -196,7 +196,7 @@ def serveral_sentence_generate(sent='일본은', generate_num=5):
 # option 설정 do_sample=False -> 항상 같은 문장 만듬
 # 여러 문장 만들어내는 함수와 toked 부분이 다름
 # 추천 단어 사용 불가
-'''
+
 def one_sentence_generate(sent='한국은', do_sample=True):
     #sent = input('입력 : ')
 
@@ -217,4 +217,3 @@ def one_sentence_generate(sent='한국은', do_sample=True):
     ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁', ' ').strip())
 
     return ret
-'''
