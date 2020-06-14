@@ -7,7 +7,9 @@ $pip3 install -r requirements.txt
 
 2. kogpt2 설치하기
 
-&pip3 install gptko
+&pip3 install gptko (x)
+&pip3 install minegpt2 (o)
+
 
 # MinePost
 

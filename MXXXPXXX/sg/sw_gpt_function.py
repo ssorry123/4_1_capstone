@@ -15,8 +15,8 @@ import re
     2. KoGPT2 package
 '''
 
-#from gptko.kogpt2.utils import get_tokenizer
-#from gptko.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+#from minegpt2.kogpt2.utils import get_tokenizer
+#from minegpt2.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 
 from kogpt2.utils import get_tokenizer
 from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
