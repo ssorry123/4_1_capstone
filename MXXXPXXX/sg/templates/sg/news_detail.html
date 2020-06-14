@@ -104,9 +104,14 @@
         <div class="col-xs-10 left_line">
           <h1 class="detail_title">{{ article.title }}</h1>
 
-          <div class="col-xs-2 bot_line">
-            <button class="btn btn-default">스크랩</button>
-          </div>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="col-xs-2 bot_line">
+              <input type="hidden" name="article_id" value="{{article.id}}">
+              <input type="hidden" name="user_id" value="{{user.userid}}">
+              <button class="btn btn-default" formaction="{% url 'sg:scrap' %}">스크랩</button>
+            </div>
+          </form>
 
           <div class="col-xs-10 bot_line_nopad">
             <ul>

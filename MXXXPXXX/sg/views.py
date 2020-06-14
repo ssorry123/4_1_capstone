@@ -6,10 +6,12 @@ from django.utils import timezone
 from django.contrib import auth
 import json
 
-from .models import Writing
+from .models import Writing, ScrapList
 from .forms import UserForm, ArticleForm
 from .sw_gpt_function import *
 from .google_crawling_20026 import collect_links
+
+
 
 
 # 단순히 HTML만 띄우는 코드
@@ -31,17 +33,19 @@ def index(request):
 
 # POST인경우 받아온 데이터를 처리하고 HTML에 넘겨줌
 def writing(request):
+    category = ['정치', '사회', 'IT/과학', '문화/예술']
     if request.method == "POST":
         # HTML에서 값 받아오는 법
         title = request.POST['title']
         content = request.POST['content']
         text = request.POST['text']
+        checked = request.POST['category']
         links = ''
         # 문장 생성 함수
-
-        gen = serveral_sentence_generate(content)
-        for i in range(len(gen)):
-            text = text + gen[i]
+        if request.GET.get('type') == 'text':
+            gen = serveral_sentence_generate(content)
+            for i in range(len(gen)):
+                text = text + gen[i]
         if request.GET.get('type') == 'image':
             if title == '':
                 return redirect('sg:writing')
@@ -53,6 +57,8 @@ def writing(request):
             'content': '',
             'text': text,
             'links': links,
+            'checked': checked,
+            'category': category,
         }
 
     else:
@@ -61,6 +67,8 @@ def writing(request):
             'content': '',
             'text': '',
             'links': '',
+            'checked': '',
+            'category': category,
         }
 
     return render(request, 'sg/writing.html', ctx)
@@ -73,6 +81,8 @@ def save(request):
         if form.is_valid():
             form.save()
             return redirect('sg:index')
+        else:
+            return HttpResponse(form.errors)
     return redirect('sg:writing')
 
 
@@ -135,6 +145,28 @@ def detail(request, pk):
     }
     return render(request, 'sg/news_detail.html', context)
 
+def scrap(request):
+    if request.method == "POST":
+        user_info = request.POST["user_id"]
+        articleid = request.POST["article_id"]
+        article = Writing.objects.get(id=articleid)
+        title = article.title
+        writer = article.writer
+        category = article.category
+        article.scrap_update
+        scrap_cnt = article.scrap
+        scrap_info = ScrapList(user_info=user_info, title=title, article_id=articleid, category=category, writer=writer, scrap=scrap_cnt )
+        scrap_info.save()
+        #return HttpResponse(user_info)
+        #return render(request, 'sg/scrap.html')
+        return redirect('sg:scraplist')
+
+def scraplist(request):
+    scraps = ScrapList.objects.all()
+    context = {
+        'scraps':scraps
+    }
+    return render(request, 'sg/scrap.html',context)
 
 def list(request):
     # 해당 카테고리인 최신글 10개 디비에서 가져오기

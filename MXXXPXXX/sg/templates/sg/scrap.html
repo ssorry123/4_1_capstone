@@ -103,23 +103,30 @@
         <thead>
           <tr>
             <th></th>
-            <th>번호</th>
+            <th>카테고리</th>
             <th>제목</th>
             <th>작성자</th>
             <th>날짜</th>
-            <th>조회수</th>
+            <th>스크랩수</th>
           </tr>
         </thead>
 
         <tbody class="bot_line">
+          {% for scrap in scraps %}
+            {% if scrap.user_info != user.userid %}
+            <!-- continue -->
+            {% else %}
           <tr>
             <td><input type="checkbox" name="xxx" value="yyy"></td>
-            <td>1</td>
-            <td>코로나 확산 주춤해..</td>
-            <td>소석진</td>
-            <td>2020.05.22</td>
-            <td>2</td>
+            <td>{{ scrap.category }}</td>
+            <td><a href="{% url 'sg:detail' scrap.article_id %}">{{ scrap.title }}</td>
+            <td>{{ scrap.writer }}</td>
+            <td>{{ scrap.pub_date }}</td>
+            <td>{{ scrap.scrap }}</td>
           </tr>
+            {% endif %}
+          {% endfor %}
+          <!--
           <tr>
             <td><input type="checkbox" name="xxx" value="yyy"></td>
             <td>2</td>
@@ -144,6 +151,7 @@
             <td>2020.05.22</td>
             <td>2</td>
           </tr>
+          -->
         </tbody>
 
       </table>
