@@ -41,7 +41,18 @@ model, vocab = get_pytorch_kogpt2_model()
 '''
 #   4. fine turning한 것을 모델에 적용하기
 '''
-# 미적용
+# load_path는 각각 local에서 tar파일을 저장한 곳으로 
+# 다르게 지정한다.
+# 여러 fineturing 파일을 적용하는 법은 아직 하지 않았다.
+def adaptFineTurning(string):
+    load_path = '/home/park/data/'
+    load_path = load_path+string+'.tar'
+    print(load_path)
+    device = torch.device('cpu')
+    checkpoint=torch.load(load_path, map_location=device)
+    model.load_state_dict(checkpoint['model_state_dict'])
+
+
 '''
     5. 정의된 함수들
     단어 추천 함수 : words_list, context_words_list, context_words_list2
@@ -169,6 +180,11 @@ def serveral_sentence_generate(sent='일본은', generate_num=5):
     input_ids = torch.tensor([
         vocab[vocab.bos_token],
     ] + vocab[toked]).unsqueeze(0)
+
+
+    # 학습한 모델 적용
+    # adaptFineTurning('333')
+
 
     # do_sample True 랜덤 생성
     # num_return_sequences 생성할 문장 개수
