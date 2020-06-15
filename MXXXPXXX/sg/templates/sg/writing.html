@@ -152,14 +152,14 @@
 
             <div class="form-group cat_radio">
               <div>
-                <label class="radio-inline"> <input type="radio" name="category" id="cat_poli"
-                    value="cat_poli">정치</label>
-                <label class="radio-inline"> <input type="radio" name="category" id="cat_soci"
-                    value="cat_soci">사회</label>
-                <label class="radio-inline"> <input type="radio" name="category" id="cat_it"
-                    value="cat_it">IT/과학</label>
-                <label class="radio-inline"> <input type="radio" name="category" id="cat_cult"
-                    value="cat_cult">문화/예술</label>
+                {% for cat in category %}
+                {% if cat == checked %}
+                <label class="radio-inline"> <input type="radio" name="category" value="{{ cat }}"
+                    checked>{{ cat }}</label>
+                {% else %}
+                <label class="radio-inline"> <input type="radio" name="category" value="{{ cat }}">{{ cat }}</label>
+                {% endif %}
+                {% endfor %}
               </div>
             </div>
 
@@ -198,7 +198,7 @@
           </div>
 
           <div class=" text-center">
-            <input type="submit" class="btn btn-info" value="기사 완성하기">
+            <input type="submit" class="btn btn-info" value="기사 완성하기" formaction="{% url 'sg:writing' %}?type=text">
           </div>
           <div class="form-group">
             <label class="writing_title" for="fin_content">완성된 글</label>
@@ -212,13 +212,19 @@
             <label class="writing_title" for="File" onchange="setThumbnail(event);">이미지 첨부하기</label>
             <input type="file" id="File">
           </div> -->
-
+          <script>
+            function mark(img) {
+              document.getElementById('photo').value = img.src;
+              img.style.border = "1px solid red";
+            }
+          </script>
           <div class="ai_box">
             <h1 class="ai_title"><i class="fas fa-robot fa-lg"></i>&nbsp;&nbsp;이미지 추천</h1>
             <p class="ai_summarize">제목에 잘 어울리는 이미지를 추천해드립니다.</p>
             {% for link in links %}
             <img class="findimg" id="findimg{{ forloop.counter }}" onclick="mark(this)" src="{{ link }}" alt="사진">
             {% endfor %}
+            <input type="hidden" name="photo" id="photo" value="">
             <div class="text-center">
               <input type="submit" class="btn btn-info navbar-btn" value="이미지 추천받기"
                 formaction="{% url 'sg:writing' %}?type=image">
