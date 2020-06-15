@@ -15,11 +15,11 @@ import re
     2. KoGPT2 package
 '''
 
-#from minegpt2.kogpt2.utils import get_tokenizer
-#from minegpt2.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+from minegpt2.kogpt2.utils import get_tokenizer
+from minegpt2.kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 
-from kogpt2.utils import get_tokenizer
-from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
+# from kogpt2.utils import get_tokenizer
+# from kogpt2.pytorch_kogpt2 import get_pytorch_kogpt2_model
 '''
 3. 함수에서 사용할 전역변수 tok_path, tok, model, vocab
 '''
@@ -41,15 +41,17 @@ model, vocab = get_pytorch_kogpt2_model()
 '''
 #   4. fine turning한 것을 모델에 적용하기
 '''
-# load_path는 각각 local에서 tar파일을 저장한 곳으로 
+
+
+# load_path는 각각 local에서 tar파일을 저장한 곳으로
 # 다르게 지정한다.
 # 여러 fineturing 파일을 적용하는 법은 아직 하지 않았다.
 def adaptFineTurning(string):
     load_path = '/home/park/data/'
-    load_path = load_path+string+'.tar'
+    load_path = load_path + string + '.tar'
     print(load_path)
     device = torch.device('cpu')
-    checkpoint=torch.load(load_path, map_location=device)
+    checkpoint = torch.load(load_path, map_location=device)
     model.load_state_dict(checkpoint['model_state_dict'])
 
 
@@ -181,27 +183,26 @@ def serveral_sentence_generate(sent='일본은', generate_num=5):
         vocab[vocab.bos_token],
     ] + vocab[toked]).unsqueeze(0)
 
-
     # 학습한 모델 적용
     # adaptFineTurning('333')
-
 
     # do_sample True 랜덤 생성
     # num_return_sequences 생성할 문장 개수
 
     outputs = model.generate(input_ids=input_ids,
-                             max_length=300,min_length=200,
+                             max_length=300,
+                             min_length=200,
                              repetition_penalty=1.0,
                              do_sample=True,
                              num_return_sequences=generate_num,
-                             eos_token_id=0, pad_token_id=3
-                            )
+                             eos_token_id=0,
+                             pad_token_id=3)
 
     for i in range(generate_num):
         toked = vocab.to_tokens(outputs[i].squeeze().tolist())
         ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁',
                                                                ' ').strip())
-        ret=ret.replace('<pad>', '')
+        ret = ret.replace('<pad>', '')
         ret += '\n\n'
         ret_list.append(ret)
 
@@ -212,6 +213,7 @@ def serveral_sentence_generate(sent='일본은', generate_num=5):
 # option 설정 do_sample=False -> 항상 같은 문장 만듬
 # 여러 문장 만들어내는 함수와 toked 부분이 다름
 # 추천 단어 사용 불가
+
 
 def one_sentence_generate(sent='한국은', do_sample=True):
     #sent = input('입력 : ')

@@ -13,7 +13,6 @@ from .google_crawling_20026 import collect_links
 
 
 
-
 # 단순히 HTML만 띄우는 코드
 def index(request):
     headline = Writing.objects.all()[:10]
@@ -145,6 +144,7 @@ def detail(request, pk):
     }
     return render(request, 'sg/news_detail.html', context)
 
+
 def scrap(request):
     if request.method == "POST":
         user_info = request.POST["user_id"]
@@ -155,18 +155,23 @@ def scrap(request):
         category = article.category
         article.scrap_update
         scrap_cnt = article.scrap
-        scrap_info = ScrapList(user_info=user_info, title=title, article_id=articleid, category=category, writer=writer, scrap=scrap_cnt )
+        scrap_info = ScrapList(user_info=user_info,
+                               title=title,
+                               article_id=articleid,
+                               category=category,
+                               writer=writer,
+                               scrap=scrap_cnt)
         scrap_info.save()
         #return HttpResponse(user_info)
         #return render(request, 'sg/scrap.html')
         return redirect('sg:scraplist')
 
+
 def scraplist(request):
     scraps = ScrapList.objects.all()
-    context = {
-        'scraps':scraps
-    }
-    return render(request, 'sg/scrap.html',context)
+    context = {'scraps': scraps}
+    return render(request, 'sg/scrap.html', context)
+
 
 def list(request):
     # 해당 카테고리인 최신글 10개 디비에서 가져오기
