@@ -38,7 +38,7 @@ def writing(request):
         content = request.POST['content']
         text = request.POST['text']
         checked = request.POST['category']
-        links = ''
+        links = request.POST['links']
         # 문장 생성 함수
         if request.GET.get('type') == 'text':
             gen = serveral_sentence_generate(content)
