@@ -10,6 +10,12 @@ $pip3 install -r requirements.txt
 &pip3 install gptko (x)
 &pip3 install minegpt2 (o)
 
+3. 학습된 tar파일 다운로드하기
+
+&pip3 install gdown
+
+&gdown https://drive.google.com/uc?id=1-2bfIejzxDwT6xpZr64ujJwJsId_FtW9
+
 
 # MinePost
 
