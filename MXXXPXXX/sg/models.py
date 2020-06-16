@@ -39,7 +39,7 @@ class Writing(models.Model):
     @property
     def scrap_update(self):
         self.scrap += 1
-        self.save() 
+        self.save()
 
     def __str__(self):
         return self.title
@@ -47,17 +47,19 @@ class Writing(models.Model):
     class Meta:
         ordering = ['-pub_date']
 
-    
 
 class ScrapList(models.Model):
     objects = UserManager()
-    user_info = models.CharField(default=objects.name, max_length=20, verbose_name='사용자 id')
+    user_info = models.CharField(default=objects.name,
+                                 max_length=20,
+                                 verbose_name='사용자 id')
     # user_scrap_id = models.IntegerField(default=0, verbose_name='스크랩 id')
     title = models.CharField(max_length=100, verbose_name='기사 제목')
     article_id = models.IntegerField(default=0, verbose_name='기사 번호')
     category = models.CharField(default='', max_length=50, verbose_name='카테고리')
     writer = models.CharField(default=objects.name, max_length=20, null=True)
-    pub_date = models.DateTimeField(default=timezone.now, verbose_name='스크랩 날짜')
+    scrap_date = models.DateTimeField(default=timezone.now,
+                                      verbose_name='스크랩 날짜')
     scrap = models.IntegerField(default=0, verbose_name='스크랩 수')
 
     def __str__(self):

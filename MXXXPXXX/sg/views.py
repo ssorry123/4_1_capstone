@@ -12,7 +12,6 @@ from .sw_gpt_function import *
 from .google_crawling_20026 import collect_links
 
 
-
 # 단순히 HTML만 띄우는 코드
 def index(request):
     headline = Writing.objects.all()[:10]
@@ -181,7 +180,7 @@ def list(request):
     hot_article = ''
     if page == 1:
         hot_article = Writing.objects.filter(category=cat)[0]
-    last_page = Writing.objects.filter(category=cat).count() // 10 + 1
+    last_page = (Writing.objects.filter(category=cat).count() - 2) // 10 + 1
     article_range = range(1, last_page + 1)
     articles = Writing.objects.filter(category=cat)[1 + 10 * (page - 1):1 +
                                                     10 * page]

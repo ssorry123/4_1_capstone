@@ -113,18 +113,18 @@
 
         <tbody class="bot_line">
           {% for scrap in scraps %}
-            {% if scrap.user_info != user.userid %}
-            <!-- continue -->
-            {% else %}
+          {% if scrap.user_info != user.userid %}
+          <!-- continue -->
+          {% else %}
           <tr>
             <td><input type="checkbox" name="xxx" value="yyy"></td>
             <td>{{ scrap.category }}</td>
             <td><a href="{% url 'sg:detail' scrap.article_id %}">{{ scrap.title }}</td>
             <td>{{ scrap.writer }}</td>
-            <td>{{ scrap.pub_date }}</td>
+            <td>{{ scrap.scrap_date }}</td>
             <td>{{ scrap.scrap }}</td>
           </tr>
-            {% endif %}
+          {% endif %}
           {% endfor %}
           <!--
           <tr>
