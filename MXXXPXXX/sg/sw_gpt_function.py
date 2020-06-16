@@ -203,6 +203,7 @@ def serveral_sentence_generate(sent='일본은', generate_num=5):
         ret = re.sub(r'(<s>|</s>)', '', ''.join(toked).replace('▁',
                                                                ' ').strip())
         ret = ret.replace('<pad>', '')
+        ret = ret.replace('<unk>', '')
         ret += '\n\n'
         ret_list.append(ret)
 
