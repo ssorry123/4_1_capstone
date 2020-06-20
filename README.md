@@ -34,16 +34,20 @@
 * 인공지능 보조 뉴스 사이트
 * django 사용
 
-### team Minerva
+
+
+### ㅁ team Minerva
 
 * 많이 부족한 하지만 꾸준한 개선 중에 있습니다.
 * team Manager : So
 * team Member : Jeong, Jee, Lee, Park 
 
-### Contacts
+#### Contacts
 
 `MINE POST` 관련 이슈는 [이곳](https://github.com/ssorry123/capstone/issues)에 올려주세요.
 * e-mail(Zin) : seokzin95@gmail.com
+
+
 
 ### ㅁ SKT-AI/KoGPT2
 
@@ -55,6 +59,7 @@
 
 #### License
 `KoGPT2`는 `modified MIT` 라이선스 하에 공개되어 있습니다. 모델 및 코드를 사용할 경우 라이선스 내용을 준수해주세요. 라이선스 전문은 `LICENSE` 파일에서 확인하실 수 있습니다.
+
 
 
 ### ㅁ How to install
@@ -82,7 +87,9 @@ Python 버전 3.6 이상을 필요로 하며, 그 외 필요한 package는 모�
 * Django==3.0.7
 * minegpt2
 
----
+
+
+
 
 ### ㅁ How to use
 
@@ -121,6 +128,8 @@ localhost:8000/sg
 
 
 
+
+
 ### ㅁ Main Big3 service
 
 #### 1. AI Writing
@@ -135,6 +144,8 @@ localhost:8000/sg
 #### 3. three-Line Summary
 - TextRank를 통한 핵심 문장 요약
 - (패키지 문제로 개선 중에 있습니다.)
+
+
 
 
 
