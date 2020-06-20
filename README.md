@@ -1,16 +1,21 @@
 쉽게 kogpt2 설치해서 사용하기
 
 1. 필요한것 다운로드
-skt KOGPT2 깃허브가서 requirements.txt다운받아서 필요한 패키지 다운로드하기
+모든 필요한 package 정의되어 있음.
 
 $pip3 install -r requirements.txt
 
-2. kogpt2 설치하기
+﻿gluonnlp == 0.9.1
+mxnet == 1.6.0
+sentencepiece >= 0.1.85
+torch == 1.5.0
+transformers == 2.11.0
+django_extensions==2.2.9
+selenium==3.141.0
+Django==3.0.7
+minegpt2
 
-&pip3 install gptko (x)
-&pip3 install minegpt2 (o)
-
-3. 학습된 tar파일 다운로드하기
+2. 학습된 tar파일 다운로드하기
 
 &pip3 install gdown
 
