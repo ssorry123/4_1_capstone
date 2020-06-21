@@ -23,7 +23,7 @@
     - [fineturning]
     - [Function Info.]
     - [sample File Download]
-  - [others]()
+  - [others]
   
 
 <!-- /code_chunk_output -->
@@ -180,7 +180,7 @@ localhost:8000/sg
 
 
 
-### others
+### ㅁ others
 
 #### 협업 방식: Forking
 - 링크1: <https://gmlwjd9405.github.io/2017/10/28/how-to-collaborate-on-GitHub-2.html>
