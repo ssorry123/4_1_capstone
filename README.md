@@ -45,7 +45,7 @@
 #### Contacts
 
 `MINE POST` 관련 이슈는 [이곳](https://github.com/ssorry123/capstone/issues)에 올려주세요.
-* e-mail(Zin) : seokzin95@gmail.com
+* e-mail(So) : seokzin95@gmail.com
 
 
 
@@ -65,6 +65,7 @@
 ### ㅁ How to install
 
 ```sh
+
 &git init
 &git clone https://github.com/ssorry123/capstone.git
 &cd capstone
@@ -96,11 +97,13 @@ Python 버전 3.6 이상을 필요로 하며, 그 외 필요한 package는 모�
 ####  Linux
 
 ```sh
+
 &cd MXXXPXXX
 &python3 manage.py runserver
 ```
 
 ```sh
+
 anonymous:~/wwwww/capstone$ cd MXXXPXXX
 anonymous:~/wwwww/capstone/MXXXPXXX$ python3 manage.py runserver
 Watching for file changes with StatReloader
@@ -170,6 +173,7 @@ localhost:8000/sg
 - 다운로드 방법은 아래와 같습니다. (주소는 언제든지 변경될 수 있습니다.)
 
 ```sh
+
 &pip3 install gdown
 
 &gdown https://drive.google.com/uc?id=1-2bfIejzxDwT6xpZr64ujJwJsId_FtW9
