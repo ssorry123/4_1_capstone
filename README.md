@@ -65,10 +65,10 @@
 ### ㅁ How to install
 
 ```sh
-git init
-git clone https://github.com/ssorry123/capstone.git
-cd capstone
-pip3 install -r requirements.txt
+&git init
+&git clone https://github.com/ssorry123/capstone.git
+&cd capstone
+&pip3 install -r requirements.txt
 ```
 
 
@@ -96,8 +96,8 @@ Python 버전 3.6 이상을 필요로 하며, 그 외 필요한 package는 모�
 ####  Linux
 
 ```sh
-$cd MXXXPXXX
-$python3 manage.py runserver
+&cd MXXXPXXX
+&python3 manage.py runserver
 ```
 
 ```sh
