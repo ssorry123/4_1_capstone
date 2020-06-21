@@ -4,25 +4,25 @@
 
 <!-- code_chunk_output -->
 
-- [MINE POST (CSUOS capstone-project)]()
-  - [team Minerva]()
-    - [Contacts]()
-  - [SKT-AI/KoGPT2]()
-    - [GitHub]()
-    - [License]()
-  - [How to install]()
-    - [Requirements]()
-  - [How to use]()
-    - [Linux]()
-    - [Windows, MacOS]()
-  - [Main Big3 service]()
-    - [AI Writing]()
-    - [Image Recommendation]()
-    - [three-Line Summary]()
-  - [Fine Turning]()
-    - [fineturning]()
-    - [Function Info.]()
-    - [sample File Download]()
+- [MINE POST (CSUOS capstone-project)]
+  - [team Minerva]
+    - [Contacts]
+  - [SKT-AI/KoGPT2]
+    - [GitHub]
+    - [License]
+  - [How to install]
+    - [Requirements]
+  - [How to use]
+    - [Linux]
+    - [Windows, MacOS]
+  - [Main Big3 service]
+    - [AI Writing]
+    - [Image Recommendation]
+    - [three-Line Summary]
+  - [Fine Turning]
+    - [fineturning]
+    - [Function Info.]
+    - [sample File Download]
   - [others]()
   
 
@@ -96,11 +96,11 @@ Python 버전 3.6 이상을 필요로 하며, 그 외 필요한 package는 모�
 ####  Linux
 
 ```sh
-cd MXXXPXXX
-python3 manage.py runserver
+$cd MXXXPXXX
+$python3 manage.py runserver
 ```
 
-```shell
+```sh
 anonymous:~/wwwww/capstone$ cd MXXXPXXX
 anonymous:~/wwwww/capstone/MXXXPXXX$ python3 manage.py runserver
 Watching for file changes with StatReloader
@@ -157,7 +157,7 @@ localhost:8000/sg
 - fineturning 과정은 fineturning 폴더를 참조하세요.
 - 학습을 마친 후 결과물은 `.tar` 파일로 저장되게 됩니다.(주의, 용량이 큼)
 
-#### Function Info
+#### Function Info.
 - fineturning을 완료 한 후 AI Writing에 `적용`하려면 간단한 함수 변경이 필요합니다.
 - `capstone/MXXXPXXX/sg`에 위치한 `sw_gpt_function.py`를 약간 수정해야 합니다.
 - `adaptFineTurning 함수`의 `load_path`를 자신이 학습완료한 파일의 경로에 맞게 수정한 후
@@ -169,7 +169,7 @@ localhost:8000/sg
 - 용량 문제로 샘플 tar 파일 하나만을 제공하고 있습니다. (약 1.5GB) (333.tar) (김동인 작가의 단편소설)
 - 다운로드 방법은 아래와 같습니다. (주소는 언제든지 변경될 수 있습니다.)
 
-```shell
+```sh
 &pip3 install gdown
 
 &gdown https://drive.google.com/uc?id=1-2bfIejzxDwT6xpZr64ujJwJsId_FtW9
