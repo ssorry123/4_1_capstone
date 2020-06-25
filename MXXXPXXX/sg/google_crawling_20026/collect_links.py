@@ -7,6 +7,7 @@ import platform
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os.path as osp
+import os
 
 
 class CollectLinks:
@@ -18,10 +19,14 @@ class CollectLinks:
             executable = 'sg\google_crawling_20026\chromedriver.exe'
         elif platform.system() == 'Linux':
             print('Detected OS : Linux')
-            executable = './chromedriver/chromedriver_linux64'
+            #executable = './chromedriver/chromedriver_linux64'
+            temp_path=os.path.dirname(os.path.realpath(__file__))
+            executable = temp_path+'/chromedriver/chromedriver_linux64'
         elif platform.system() == 'Darwin':
             print('Detected OS : Mac')
-            executable = './chromedriver/chromedriver_mac64'
+            #executable = './chromedriver/chromedriver_linux64'
+            temp_path=os.path.dirname(os.path.realpath(__file__))
+            executable = temp_path+'/chromedriver/chromedriver_mac64'
         else:
             raise OSError('Unknown OS Type')
 
