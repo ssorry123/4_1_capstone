@@ -42,13 +42,6 @@
 * team Manager : So
 * team Member : Jeong, Jee, Lee, Park 
 
-#### Contacts
-
-`MINE POST` 관련 이슈는 [이곳](https://github.com/ssorry123/capstone/issues)에 올려주세요.
-* e-mail(So) : seokzin95@gmail.com
-
-
-
 ### ㅁ SKT-AI/KoGPT2
 
 * `SKT Conv.AI`팀이 깃허브에 공개한 KoGPT2 모델 Korean GPT-2 pretrained cased (KoGPT2)을 사용하였습니다.
